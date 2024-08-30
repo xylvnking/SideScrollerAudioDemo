@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=3 uid="uid://chdtemyji14er"]
+
+[ext_resource type="Texture2D" uid="uid://t40odiciwc6f" path="res://assets/Crow.png" id="1_uevoo"]
+[ext_resource type="AudioStream" uid="uid://bup6agoyqpdmn" path="res://assets/sounds/crow8bit.wav" id="3_gwvbi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkld0"]
+atlas = ExtResource("1_uevoo")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgrx5"]
+atlas = ExtResource("1_uevoo")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo2ka"]
+atlas = ExtResource("1_uevoo")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m88by"]
+atlas = ExtResource("1_uevoo")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6tyt"]
+atlas = ExtResource("1_uevoo")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7bv4"]
+atlas = ExtResource("1_uevoo")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsiwh"]
+atlas = ExtResource("1_uevoo")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqksl"]
+atlas = ExtResource("1_uevoo")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0i6fp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkld0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkld0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgrx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo2ka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m88by")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6tyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6tyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7bv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsiwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqksl")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_mygc3"]
+resource_name = "sound"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_gwvbi")
+}],
+"times": PackedFloat32Array(2.5)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qsbag"]
+_data = {
+"sound": SubResource("Animation_mygc3")
+}
+
+[node name="Crow" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0i6fp")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.404287
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qsbag")
+}
+autoplay = "sound"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gwvbi")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bftg8irxsnob5"]
+
+[ext_resource type="Script" path="res://scripts/fenceEnd.gd" id="1_0snch"]
+[ext_resource type="Texture2D" uid="uid://dl8bct7h6kfsx" path="res://assets/36 - DARK Apocalytic Highway/spritesheet.png" id="1_12s4n"]
+
+[node name="fenceEnd" type="StaticBody2D"]
+script = ExtResource("1_0snch")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_12s4n")
+region_enabled = true
+region_rect = Rect2(160, 115, 108, 13)

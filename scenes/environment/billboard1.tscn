@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cau1hwhmawkq4"]
+
+[ext_resource type="Texture2D" uid="uid://dl8bct7h6kfsx" path="res://assets/36 - DARK Apocalytic Highway/spritesheet.png" id="1_aanfw"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1yvu0"]
+a = Vector2(75, -14)
+b = Vector2(-31, -14)
+
+[node name="billboard1" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(7, 0)
+polygon = PackedVector2Array(66, 37, 66, 39, -36, 39, -36, 37)
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-31, -14)
+texture = ExtResource("1_aanfw")
+centered = false
+region_enabled = true
+region_rect = Rect2(131, 139, 106, 101)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_1yvu0")
+one_way_collision = true

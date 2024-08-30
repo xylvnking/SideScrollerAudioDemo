@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://by35m8gyl2tsc"]
+
+[ext_resource type="Script" path="res://scenes/health_pack.gd" id="1_pd1jl"]
+[ext_resource type="Texture2D" uid="uid://diau2sju87kxd" path="res://assets/milk_chocolate.png" id="1_yjm4m"]
+
+[sub_resource type="Animation" id="Animation_q8w0t"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_i5xvn"]
+resource_name = "float"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -10, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m3uka"]
+_data = {
+"RESET": SubResource("Animation_q8w0t"),
+"float": SubResource("Animation_i5xvn")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjbbp"]
+radius = 14.0029
+
+[node name="HealthPack" type="Node2D"]
+position = Vector2(0, -10)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_pd1jl")
+
+[node name="Main" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Main"]
+texture = ExtResource("1_yjm4m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_m3uka")
+}
+autoplay = "float"
+
+[node name="Area2D" type="Area2D" parent="Main"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Area2D"]
+shape = SubResource("CircleShape2D_cjbbp")
+
+[connection signal="body_entered" from="Main/Area2D" to="." method="_on_area_2d_body_entered"]

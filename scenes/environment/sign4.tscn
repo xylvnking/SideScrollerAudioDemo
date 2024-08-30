@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0naqwc7xjqtb"]
+
+[ext_resource type="Texture2D" uid="uid://dl8bct7h6kfsx" path="res://assets/36 - DARK Apocalytic Highway/spritesheet.png" id="1_a5jp0"]
+
+[node name="sign2" type="Sprite2D"]
+texture = ExtResource("1_a5jp0")
+region_enabled = true
+region_rect = Rect2(86, 143, 36, 33)

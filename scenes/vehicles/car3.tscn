@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnmtmypo84a8p"]
+
+[ext_resource type="Texture2D" uid="uid://dl8bct7h6kfsx" path="res://assets/36 - DARK Apocalytic Highway/spritesheet.png" id="1_3qbtg"]
+
+[node name="car3" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(7, 0)
+polygon = PackedVector2Array(-38, -5, -38, 2, -31, 6, 39, 6, 58, 3, 57, -7, 32, -7, 27, -13, 27, -13, 22, -14, -2, -14, -10, -7, -33, -7)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-31, -14)
+texture = ExtResource("1_3qbtg")
+centered = false
+region_enabled = true
+region_rect = Rect2(169, 12, 98, 20)
