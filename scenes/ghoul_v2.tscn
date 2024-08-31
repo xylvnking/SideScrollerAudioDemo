@@ -1,0 +1,197 @@
+[gd_scene load_steps=17 format=3 uid="uid://cc76f8inpb8b4"]
+
+[ext_resource type="Script" path="res://scripts/GhoulV2.gd" id="1_dtx0y"]
+[ext_resource type="Texture2D" uid="uid://c4jwhtgvvcni0" path="res://assets/DARK - Character Pack 3 (2)/Ghoul/Ghoul Sprite Sheet 62 x 33.png" id="1_kodfr"]
+[ext_resource type="Script" path="res://scripts/states/State Machine.gd" id="2_5m6c7"]
+[ext_resource type="Script" path="res://scripts/states/EnemyWalking.gd" id="4_egtbv"]
+[ext_resource type="Script" path="res://scripts/states/EnemyIdle.gd" id="4_ingdn"]
+[ext_resource type="Script" path="res://scripts/EnemyHit.gd" id="4_tmgi2"]
+[ext_resource type="Script" path="res://scripts/states/EnemyAttacking.gd" id="5_rufsj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_melvh"]
+size = Vector2(12, 23.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rchpx"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3uy1"]
+
+[sub_resource type="Animation" id="Animation_w2su7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Area2D/AttackHitbox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hsifq"]
+resource_name = "attack"
+length = 0.80001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [22, 23, 24, 25, 26, 27, 28]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Area2D/AttackHitbox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_yve5j"]
+resource_name = "idle"
+length = 0.50001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_57w70"]
+resource_name = "walk"
+length = 0.90001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_ges5y"]
+resource_name = "hit"
+length = 0.40001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [33, 34, 35, 36]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ebspc"]
+_data = {
+"RESET": SubResource("Animation_w2su7"),
+"attack": SubResource("Animation_hsifq"),
+"hit": SubResource("Animation_ges5y"),
+"idle": SubResource("Animation_yve5j"),
+"walk": SubResource("Animation_57w70")
+}
+
+[node name="GhoulV2" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_dtx0y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.75)
+shape = SubResource("RectangleShape2D_melvh")
+
+[node name="ray_cast_right" type="RayCast2D" parent="CollisionShape2D"]
+rotation = -1.5708
+target_position = Vector2(0, 10)
+
+[node name="ray_cast_left" type="RayCast2D" parent="CollisionShape2D"]
+rotation = 1.5708
+target_position = Vector2(0, 10)
+
+[node name="State" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_5m6c7")
+initial_state = NodePath("EnemyWalking")
+
+[node name="EnemyIdle" type="Node" parent="State" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_ingdn")
+enemy = NodePath("../..")
+
+[node name="EnemyHit" type="Node" parent="State"]
+script = ExtResource("4_tmgi2")
+
+[node name="EnemyWalking" type="Node" parent="State" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_egtbv")
+enemy = NodePath("../..")
+
+[node name="EnemyAttacking" type="Node" parent="State" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_rufsj")
+enemy = NodePath("../..")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
+texture = ExtResource("1_kodfr")
+hframes = 11
+vframes = 6
+
+[node name="Area2D" type="Area2D" parent="Marker2D/Sprite2D"]
+
+[node name="AttackHitbox" type="CollisionShape2D" parent="Marker2D/Sprite2D/Area2D"]
+position = Vector2(14, 3)
+shape = SubResource("CircleShape2D_rchpx")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="Marker2D"]
+
+[node name="PreAttackHitbox" type="CollisionShape2D" parent="Marker2D/Area2D"]
+position = Vector2(11, 3)
+shape = SubResource("CircleShape2D_b3uy1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Marker2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ebspc")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="Marker2D/Sprite2D/Area2D" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyWalking" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="Marker2D/AnimationPlayer" to="State/EnemyAttacking" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Marker2D/AnimationPlayer" to="State/EnemyHit" method="_on_animation_player_animation_finished"]

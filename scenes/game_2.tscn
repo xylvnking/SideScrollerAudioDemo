@@ -24,10 +24,10 @@
 [ext_resource type="PackedScene" uid="uid://drudiqlhhos0u" path="res://scenes/environment/treeDECO.tscn" id="22_8o5h5"]
 [ext_resource type="PackedScene" uid="uid://cn222vdolo5do" path="res://scenes/environment/sign1.tscn" id="23_ib7na"]
 [ext_resource type="PackedScene" uid="uid://bftg8irxsnob5" path="res://scenes/environment/fenceEnd.tscn" id="24_ihj65"]
-[ext_resource type="PackedScene" uid="uid://b3n1h2hy8cmf" path="res://scenes/Ghoul.tscn" id="25_l7se3"]
 [ext_resource type="PackedScene" uid="uid://bt00ral7dc7vq" path="res://scenes/environment/billboard2.tscn" id="26_mu3sg"]
 [ext_resource type="PackedScene" uid="uid://ba0pm0iqoyivm" path="res://scenes/fire.tscn" id="28_giuck"]
 [ext_resource type="PackedScene" uid="uid://by35m8gyl2tsc" path="res://scenes/health_pack.tscn" id="29_8o2f3"]
+[ext_resource type="PackedScene" uid="uid://cc76f8inpb8b4" path="res://scenes/ghoul_v2.tscn" id="29_b4umi"]
 [ext_resource type="PackedScene" uid="uid://d1n6icu0myfbt" path="res://scenes/crowv_2.tscn" id="29_tky4m"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ak8yd"]
@@ -272,12 +272,6 @@ position = Vector2(200, -7)
 [node name="car11" parent="Environment" instance=ExtResource("15_dis84")]
 position = Vector2(170, -14)
 
-[node name="Ghoul2" parent="." instance=ExtResource("25_l7se3")]
-position = Vector2(854, -16)
-
-[node name="Ghoul3" parent="." instance=ExtResource("25_l7se3")]
-position = Vector2(1240, -2)
-
 [node name="billboard2" parent="." instance=ExtResource("26_mu3sg")]
 position = Vector2(598, -93)
 
@@ -320,3 +314,6 @@ offset_bottom = 13.0
 scale = Vector2(0.874585, 0.874585)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "need health?"
+
+[node name="GhoulV2" parent="." instance=ExtResource("29_b4umi")]
+position = Vector2(540, -25)

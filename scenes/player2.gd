@@ -44,7 +44,7 @@ func stop_attack_2_anim():
 func handle_jump():
 	#animated_sprite.play("jump")
 	velocity.y = JUMP_VELOCITY
-	print('whynojump')
+	#print('whynojump')
 	
 func heal():
 	health = 100
@@ -64,9 +64,9 @@ func _physics_process(delta):
 	#if Input.is_action_just_pressed("attack_2") && is_on_floor():
 		#animation_player.play("attack_2")
 	if Input.is_action_just_pressed("attack_secondary"):
-		animation_player.play("attack_secondary")
-		attacking = true
-		print('ye')
+		#animation_player.play("attack_secondary")
+		#attacking = true
+		pass
 	if Input.is_action_just_pressed("attack_main"):
 		animation_player.play("attack_main")
 		attacking = true
@@ -76,7 +76,6 @@ func _physics_process(delta):
 		if ray_cast_2d.is_colliding() or is_on_floor():
 			jumping = true
 			animation_player.play("jump")
-			print('jump')
 			if ray_cast_2d.is_colliding():
 				pass
 				#print('yeh collide')
