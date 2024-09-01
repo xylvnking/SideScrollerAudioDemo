@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cn8xxt57xbc7t"]
+[gd_scene load_steps=63 format=3 uid="uid://cn8xxt57xbc7t"]
 
 [ext_resource type="Script" path="res://scenes/player2.gd" id="1_kdwoi"]
 [ext_resource type="Texture2D" uid="uid://b80o0xpvi36cv" path="res://assets/sprites/Shock Sweeper/shuffe(move).png" id="1_rh8aw"]
@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://dpvbwf6tup4nv" path="res://assets/sounds/coin.wav" id="3_2r0i3"]
 [ext_resource type="Texture2D" uid="uid://bvqspittqfn0q" path="res://assets/sprites/Shock Sweeper/slam with VFX.png" id="3_5om4x"]
 [ext_resource type="Texture2D" uid="uid://bumbr20aegnhq" path="res://assets/sprites/Shock Sweeper/jump.png" id="3_fr6x3"]
-[ext_resource type="AudioStream" uid="uid://blfb73h84yeuq" path="res://assets/sounds/explosion.wav" id="4_b7x3s"]
 [ext_resource type="Texture2D" uid="uid://c4w5te0qnk10a" path="res://assets/sprites/Shock Sweeper/wake.png" id="6_v0ul8"]
 [ext_resource type="AudioStream" uid="uid://dalrohhwvrw7o" path="res://assets/sounds/jump.wav" id="10_q2606"]
 [ext_resource type="AudioStream" uid="uid://bruu4kec3yynp" path="res://assets/sounds/tap.wav" id="11_0r47l"]
@@ -806,8 +805,8 @@ script = ExtResource("1_kdwoi")
 
 [node name="AudioManager" parent="." instance=ExtResource("2_t4huo")]
 position = Vector2(-10, 0)
-grass_sounds = Array[AudioStream]([ExtResource("3_2r0i3"), ExtResource("3_2r0i3"), ExtResource("3_2r0i3")])
-metal_sounds = Array[AudioStream]([ExtResource("4_b7x3s"), ExtResource("4_b7x3s"), ExtResource("4_b7x3s")])
+grass_footstep_sounds = Array[AudioStream]([ExtResource("12_qjcbt"), ExtResource("12_qjcbt")])
+metal_footstep_sounds = Array[AudioStream]([ExtResource("3_2r0i3"), ExtResource("3_2r0i3")])
 footstep_sounds = Array[AudioStream]([ExtResource("11_0r47l"), ExtResource("11_0r47l")])
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]

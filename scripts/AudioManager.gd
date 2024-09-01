@@ -3,9 +3,7 @@ extends Node2D
 ### NOTES
 ## I don't know whether it's better to have resource paths or to have audio dropped right onto streams.
 	## the former feels 'hardcoded' a bit much but the later feels 'brittle'.
-
-@onready var surface_check_ray_cast_2d = $SurfaceCheckRayCast2D
-
+@export var audio_bus: String = "Master"
 
 # Dictionary for storing sound effect paths or preloaded resources
 # Entries can be added in the Inspector
@@ -15,12 +13,22 @@ extends Node2D
 	"die": "res://assets/sounds/explosion.wav"
 }
 
-@export var grass_sounds: Array[AudioStream] = []
-@export var wood_sounds: Array[AudioStream] = []
-@export var metal_sounds: Array[AudioStream] = []
+@export var grass_footstep_sounds: Array[AudioStream] = []
+var grass_footstep_sounds_current_index: int = 0
+@export var wood_footstep_sounds: Array[AudioStream] = []
+var wood_footstep_sounds_current_index: int = 0
+@export var metal_footstep_sounds: Array[AudioStream] = []
+var metal_footstep_sounds_current_index: int = 0
+
+var material_sounds_indices = {
+	"grass": 0,
+	"wood": 0,
+	"metal": 0
+}
 
 var material_sounds: Dictionary = {}
 var current_material: String = "grass"
+@onready var surface_check_ray_cast_2d = $SurfaceCheckRayCast2D
 
 @export var footstep_sounds: Array[AudioStream] = []
 var current_footstep_index: int = 0
@@ -40,9 +48,9 @@ func _ready():
 	
 	# Set up audio player for random base sounds
 	material_sounds = {
-		"grass": grass_sounds,
-		"wood": wood_sounds,
-		"metal": metal_sounds
+		"grass": grass_footstep_sounds,
+		"wood": wood_footstep_sounds,
+		"metal": metal_footstep_sounds
 	}
 	
 	# Create the AudioStreamPlayer2D dynamically
@@ -154,62 +162,91 @@ func play_footstep(): # should this have a material? how often do you NOT have f
 func play_looping_sound():
 	pass
 
-func set_footstep_material(new_material: String):
-	# Set the current material based on player interaction with surfaces
-	if material_sounds.has(new_material):
-		current_material = new_material
-	else:
-		print("Material not recognized: " + new_material)
-		
 func play_material_footstep():
-	
 	if surface_check_ray_cast_2d.is_colliding():
 		#print(ray_cast_2d.get_collider())
 		if surface_check_ray_cast_2d.get_collider().is_in_group("metal"):
 			#print('it is metal dawg')
 			current_material = 'metal'
-			
+			play_footstep_sound_for_material(current_material)
 		if surface_check_ray_cast_2d.get_collider().is_in_group("grass"):
 			#print('it is metal dawg')
 			current_material = 'grass'
+			play_footstep_sound_for_material(current_material)
 			
-	if not material_sounds.has(current_material):
-		print("Material not found: " + current_material)
-		return
+func play_footstep_sound_for_material(material: String):
+	
+	var sounds_array = material_sounds[material]
+	
+	if sounds_array.size() == 0:
+		return  # No sounds available for this material
 
-	var footstep_sounds = material_sounds[current_material]
-	if footstep_sounds.size() == 0:
-		print("No sounds available for material: " + current_material)
-		return
+# Get the current index for the material
+	var current_index = material_sounds_indices[material]
 
-	# Play a random footstep sound from the array
-	var sound = footstep_sounds[randi() % footstep_sounds.size()]
+# Select the sound at the current index
+	var sound = sounds_array[current_index]
+
+# Play the selected sound
 	var audio_player = AudioStreamPlayer2D.new()
 	add_child(audio_player)
 	audio_player.stream = sound
+	audio_player.bus = audio_bus
+	
+	if should_vary_footstep_pitches:
+		if current_index % 2 == 0:
+			audio_player.pitch_scale = 1.05
+		else:
+			audio_player.pitch_scale = .95
+			
 	audio_player.play()
 
-	# Queue free the audio player after the sound finishes
+# Schedule the removal of the AudioStreamPlayer2D after playback
 	var sound_duration = audio_player.stream.get_length()
 	var timer = Timer.new()
 	timer.set_wait_time(sound_duration)
 	timer.set_one_shot(true)
 	add_child(timer)
-	
+
 	timer.start()
 	timer.timeout.connect(func() -> void:
 		audio_player.queue_free()
 		timer.queue_free()
 	)
+
+# Update the index to play the next sound, looping back to the start
+	material_sounds_indices[material] = (current_index + 1) % sounds_array.size()
 	
+	######
 	
-#func _physics_process(delta):
-	#if surface_check_ray_cast_2d.is_colliding():
-			##print(ray_cast_2d.get_collider())
-			#if surface_check_ray_cast_2d.get_collider().is_in_group("metal"):
-				##print('it is metal dawg')
-				#current_material = 'metal'
-				#
-			#if surface_check_ray_cast_2d.get_collider().is_in_group("grass"):
-				##print('it is metal dawg')
-				#current_material = 'grass'
+	#if not material_sounds.has(current_material):
+		#print("Material not found: " + current_material)
+		#return
+#
+	#var footstep_sounds = material_sounds[current_material]
+	#if footstep_sounds.size() == 0:
+		#print("No sounds available for material: " + current_material)
+		#return
+#
+	## Play a random footstep sound from the array
+	#var sound = footstep_sounds[randi() % footstep_sounds.size()]
+	#var audio_player = AudioStreamPlayer2D.new()
+	#add_child(audio_player)
+	#audio_player.stream = sound
+	#audio_player.play()
+#
+	## Queue free the audio player after the sound finishes
+	#var sound_duration = audio_player.stream.get_length()
+	#var timer = Timer.new()
+	#timer.set_wait_time(sound_duration)
+	#timer.set_one_shot(true)
+	#add_child(timer)
+	#
+	#timer.start()
+	#timer.timeout.connect(func() -> void:
+		#audio_player.queue_free()
+		#timer.queue_free()
+	#)
+	
+	#####
+	

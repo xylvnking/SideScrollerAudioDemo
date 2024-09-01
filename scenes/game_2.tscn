@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dkpq12t8ik6y2"]
+[gd_scene load_steps=32 format=3 uid="uid://dkpq12t8ik6y2"]
 
 [ext_resource type="Texture2D" uid="uid://ctvtd2nuw6a5f" path="res://assets/36 - DARK Apocalytic Highway/City Parallax/parallax1.png" id="1_6srhq"]
 [ext_resource type="PackedScene" uid="uid://cn8xxt57xbc7t" path="res://scenes/player2.tscn" id="1_wwf8h"]
@@ -27,7 +27,6 @@
 [ext_resource type="PackedScene" uid="uid://bt00ral7dc7vq" path="res://scenes/environment/billboard2.tscn" id="26_mu3sg"]
 [ext_resource type="PackedScene" uid="uid://ba0pm0iqoyivm" path="res://scenes/fire.tscn" id="28_giuck"]
 [ext_resource type="PackedScene" uid="uid://by35m8gyl2tsc" path="res://scenes/health_pack.tscn" id="29_8o2f3"]
-[ext_resource type="PackedScene" uid="uid://cc76f8inpb8b4" path="res://scenes/ghoul_v2.tscn" id="29_b4umi"]
 [ext_resource type="PackedScene" uid="uid://d1n6icu0myfbt" path="res://scenes/crowv_2.tscn" id="29_tky4m"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ak8yd"]
@@ -314,9 +313,6 @@ offset_bottom = 13.0
 scale = Vector2(0.874585, 0.874585)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "need health?"
-
-[node name="GhoulV2" parent="." instance=ExtResource("29_b4umi")]
-position = Vector2(540, -25)
 
 [node name="Truck" parent="." instance=ExtResource("10_td58y")]
 position = Vector2(2137, -29)

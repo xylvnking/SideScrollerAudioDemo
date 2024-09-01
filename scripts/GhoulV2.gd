@@ -26,10 +26,6 @@ func _physics_process(delta):
 	if not is_on_floor() && gravity_enabled:
 		velocity.y += gravity * delta
 	
-	#if velocity.length() > 0:
-		#animation_player.play("walk")
-	#
-	
 	if velocity.x > 0:
 		marker_2d.scale.x=1
 	elif velocity.x < 0:
@@ -37,14 +33,6 @@ func _physics_process(delta):
 	else:
 		pass
 
-	#position.x += direction *  SPEED * delta
-	#velocity.x = direction * SPEED
-	
-	#if ray_cast_right.is_colliding():
-		#direction = -1
-	#if ray_cast_left.is_colliding():
-		#direction = 1
-	
 	move_and_slide()
 
 func take_damage(damage_amount):
@@ -56,7 +44,3 @@ func take_damage(damage_amount):
 	else:
 		state_machine.change_state("EnemyHit")
 		#state_machine.current_state.Transitioned.emit(self, "EnemyHit")  # Calls state change from state machine script
-
-#func die():
-	##state_machine.change_state("dead")  # Switches to dead state
-	#queue_free()  # Destroys the enemy
