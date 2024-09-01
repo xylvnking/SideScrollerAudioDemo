@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cc76f8inpb8b4"]
+[gd_scene load_steps=21 format=3 uid="uid://cc76f8inpb8b4"]
 
 [ext_resource type="Script" path="res://scripts/GhoulV2.gd" id="1_dtx0y"]
 [ext_resource type="Texture2D" uid="uid://c4jwhtgvvcni0" path="res://assets/DARK - Character Pack 3 (2)/Ghoul/Ghoul Sprite Sheet 62 x 33.png" id="1_kodfr"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://scripts/states/EnemyIdle.gd" id="4_ingdn"]
 [ext_resource type="Script" path="res://scripts/EnemyHit.gd" id="4_tmgi2"]
 [ext_resource type="Script" path="res://scripts/states/EnemyAttacking.gd" id="5_rufsj"]
+[ext_resource type="Script" path="res://scripts/states/EnemyDeath.gd" id="7_n6oc3"]
+[ext_resource type="AudioStream" uid="uid://bruu4kec3yynp" path="res://assets/sounds/tap.wav" id="9_dpkdi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_melvh"]
 size = Vector2(12, 23.5)
@@ -109,6 +111,7 @@ tracks/0/keys = {
 resource_name = "walk"
 length = 0.90001
 loop_mode = 1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -121,11 +124,57 @@ tracks/0/keys = {
 "update": 1,
 "values": [11, 12, 13, 14, 15, 16, 17, 18, 19]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioManager")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}, {
+"args": [],
+"method": &"play_footstep"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nlkte"]
+resource_name = "death"
+length = 1.10001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [44, 45, 46, 47, 48, 49, 50, 51]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ebspc"]
 _data = {
 "RESET": SubResource("Animation_w2su7"),
 "attack": SubResource("Animation_hsifq"),
+"death": SubResource("Animation_nlkte"),
 "hit": SubResource("Animation_ges5y"),
 "idle": SubResource("Animation_yve5j"),
 "walk": SubResource("Animation_57w70")
@@ -133,8 +182,6 @@ _data = {
 
 [node name="GhoulV2" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_dtx0y")
-
-[node name="AudioManager" parent="." instance=ExtResource("2_bjed4")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.75)
@@ -152,20 +199,39 @@ target_position = Vector2(0, 10)
 script = ExtResource("2_5m6c7")
 initial_state = NodePath("EnemyWalking")
 
-[node name="EnemyIdle" type="Node" parent="State" node_paths=PackedStringArray("enemy")]
+[node name="EnemyIdle" type="Node" parent="State" node_paths=PackedStringArray("enemy", "audio_manager")]
 script = ExtResource("4_ingdn")
 enemy = NodePath("../..")
+audio_manager = NodePath("../../AudioManager")
 
-[node name="EnemyHit" type="Node" parent="State"]
+[node name="EnemyHit" type="Node" parent="State" node_paths=PackedStringArray("audio_manager")]
 script = ExtResource("4_tmgi2")
+audio_manager = NodePath("../../AudioManager")
 
-[node name="EnemyWalking" type="Node" parent="State" node_paths=PackedStringArray("enemy")]
+[node name="EnemyWalking" type="Node" parent="State" node_paths=PackedStringArray("enemy", "audio_manager")]
 script = ExtResource("4_egtbv")
 enemy = NodePath("../..")
+audio_manager = NodePath("../../AudioManager")
 
-[node name="EnemyAttacking" type="Node" parent="State" node_paths=PackedStringArray("enemy")]
+[node name="EnemyAttacking" type="Node" parent="State" node_paths=PackedStringArray("enemy", "audio_manager")]
 script = ExtResource("5_rufsj")
 enemy = NodePath("../..")
+audio_manager = NodePath("../../AudioManager")
+
+[node name="EnemyDeath" type="Node" parent="State" node_paths=PackedStringArray("audio_manager")]
+script = ExtResource("7_n6oc3")
+audio_manager = NodePath("../../AudioManager")
+
+[node name="AudioManager" parent="." instance=ExtResource("2_bjed4")]
+sound_effects = {
+"attack": "res://assets/sounds/woosh8bit.wav",
+"death": "res://assets/sounds/crow8bit.wav",
+"die": "res://assets/sounds/explosion.wav",
+"hit": "res://assets/sounds/hurt.wav"
+}
+footstep_sounds = Array[AudioStream]([ExtResource("9_dpkdi"), ExtResource("9_dpkdi"), ExtResource("9_dpkdi"), ExtResource("9_dpkdi")])
+base_timer_low = 0.25
+base_timer_high = 2.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
@@ -193,8 +259,12 @@ libraries = {
 }
 autoplay = "idle"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -13.741
+
 [connection signal="body_entered" from="Marker2D/Sprite2D/Area2D" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyWalking" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="Marker2D/AnimationPlayer" to="State/EnemyHit" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="Marker2D/AnimationPlayer" to="State/EnemyAttacking" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Marker2D/AnimationPlayer" to="State/EnemyDeath" method="_on_animation_player_animation_finished"]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 50.0
+const SPEED = 25.0
 const JUMP_VELOCITY = -400.0
 var health = 100
 var state_machine
@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var marker_2d = $Marker2D
 @onready var ray_cast_right = $CollisionShape2D/ray_cast_right
 @onready var ray_cast_left = $CollisionShape2D/ray_cast_left
+var gravity_enabled: bool = true
 
 var direction = -1
 
@@ -22,7 +23,7 @@ func _ready():
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() && gravity_enabled:
 		velocity.y += gravity * delta
 	
 	#if velocity.length() > 0:
@@ -49,12 +50,13 @@ func _physics_process(delta):
 func take_damage(damage_amount):
 	#print('should take damage')
 	health -= damage_amount
-	#if health <= 0:
+	if health <= 0:
+		state_machine.change_state("EnemyDeath")
 		#die()
-	#else:
-	#state_machine.current_state.Transitioned.emit(self, "EnemyHit")  # Calls state change from state machine script
-	state_machine.change_state("EnemyHit")
+	else:
+		state_machine.change_state("EnemyHit")
+		#state_machine.current_state.Transitioned.emit(self, "EnemyHit")  # Calls state change from state machine script
 
-func die():
-	#state_machine.change_state("dead")  # Switches to dead state
-	queue_free()  # Destroys the enemy
+#func die():
+	##state_machine.change_state("dead")  # Switches to dead state
+	#queue_free()  # Destroys the enemy

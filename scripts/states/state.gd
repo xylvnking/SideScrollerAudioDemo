@@ -4,6 +4,18 @@ class_name State
 # https://youtu.be/ow_Lum-Agbs
 
 signal Transitioned
+#@export var audio_manager: Node2D # this exposes a parameter on each child state allowing them to select the audio manager.
+@onready var default_audio_manager = get_node_or_null("/root/Path/To/AudioManager")
+@export var audio_manager: Node2D
+#var audio_manager: Node2D
+
+func _ready():
+	# Use the exported audio_manager if set, otherwise use the default
+	if audio_manager == null:
+		audio_manager = default_audio_manager
+	
+	if !audio_manager:
+		print("AudioManager is not set!!!!.")
 
 func Enter():
 	pass
@@ -17,17 +29,5 @@ func Update(_delta: float):
 func Physics_Update(_delta: float):
 	pass
 
-#func on_child_transition(state, new_state_name):
-	#if state != current_state:
-		#return
-	#
-	#var new_state = states.get(new_state_name.to_lower())
-	#if !new_state:
-		#return
-		#
-	#if current_state:
-		#current_state.exit()
-		#
-	#new_state.enter()
-	#
-	#current_state = new_state
+func set_audio_manager(manager: Node2D):
+	audio_manager = manager

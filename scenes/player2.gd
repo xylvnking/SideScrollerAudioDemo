@@ -20,6 +20,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var attacking = false
 var jumping = false
+@onready var audio_manager = $AudioManager
 
 func take_damage(damage_amount):
 	health -= damage_amount
@@ -48,7 +49,6 @@ func handle_jump():
 	
 func heal():
 	health = 100
-	print("healed")
 	
 func _ready():
 	animated_sprite.play("wake")
@@ -70,10 +70,21 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack_main"):
 		animation_player.play("attack_main")
 		attacking = true
+		
+	#if ray_cast_2d.is_colliding():
+		##print(ray_cast_2d.get_collider())
+		#if ray_cast_2d.get_collider().is_in_group("metal"):
+			##print('it is metal dawg')
+			#audio_manager.current_material = 'metal'
+			#
+		#if ray_cast_2d.get_collider().is_in_group("grass"):
+			##print('it is metal dawg')
+			#audio_manager.current_material = 'grass'
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") && !attacking:
 		if ray_cast_2d.is_colliding() or is_on_floor():
+			
 			jumping = true
 			animation_player.play("jump")
 			if ray_cast_2d.is_colliding():
@@ -125,10 +136,11 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-
-
-
-
+func handle_footstep_sound():
+	# how can we detect what type of 'material' is under the player for footsteps/jump landing?
+	audio_manager.play_material_footstep()
+	pass
+	
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemy"):  # Ensure the player is in the "Player" group
 		body.take_damage(attack_damage)  # Call a method on the player, like take_damage

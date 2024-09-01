@@ -4,6 +4,10 @@ extends Node
 
 var current_state : State
 var states : Dictionary = {}
+#@export var audio_manager: Node2D
+
+# Parent state script (e.g., StateMachine.gd)
+
 
 
 func _ready():
@@ -15,6 +19,8 @@ func _ready():
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state
+			
+
 			
 func _process(delta):
 	if current_state:

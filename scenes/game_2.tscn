@@ -116,7 +116,7 @@ motion_mirroring = Vector2(576, 0)
 texture = ExtResource("6_oidu8")
 centered = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["grass"]]
 position = Vector2(20, -82)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -317,3 +317,6 @@ text = "need health?"
 
 [node name="GhoulV2" parent="." instance=ExtResource("29_b4umi")]
 position = Vector2(540, -25)
+
+[node name="Truck" parent="." instance=ExtResource("10_td58y")]
+position = Vector2(2137, -29)

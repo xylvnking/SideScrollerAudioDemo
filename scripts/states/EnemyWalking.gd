@@ -11,7 +11,7 @@ var move_direction : Vector2
 var wander_time : float
 
 var direction = -1
-const SPEED = 50.0
+const SPEED = 25.0
 const JUMP_VELOCITY = -400.0
 
 func randomize_wander():

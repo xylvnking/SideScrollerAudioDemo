@@ -1,13 +1,16 @@
-[gd_scene load_steps=61 format=3 uid="uid://cn8xxt57xbc7t"]
+[gd_scene load_steps=64 format=3 uid="uid://cn8xxt57xbc7t"]
 
 [ext_resource type="Script" path="res://scenes/player2.gd" id="1_kdwoi"]
 [ext_resource type="Texture2D" uid="uid://b80o0xpvi36cv" path="res://assets/sprites/Shock Sweeper/shuffe(move).png" id="1_rh8aw"]
 [ext_resource type="AudioStream" uid="uid://durs14g6mk4ql" path="res://assets/sounds/woosh8bit.wav" id="2_b42xw"]
 [ext_resource type="Texture2D" uid="uid://bgc4adum4e6fs" path="res://assets/sprites/Shock Sweeper/Sweep with VFX.png" id="2_pdqfv"]
+[ext_resource type="PackedScene" uid="uid://cmmb8q8ubvtqt" path="res://scenes/audio_manager.tscn" id="2_t4huo"]
 [ext_resource type="Texture2D" uid="uid://btlfirw3pic6l" path="res://assets/sprites/Shock Sweeper/static idle.png" id="2_ypomk"]
 [ext_resource type="Texture2D" uid="uid://cvj5pg3634ws5" path="res://assets/sprites/Shock Sweeper/Shock Sweeper All (88x30).png" id="3_1o655"]
+[ext_resource type="AudioStream" uid="uid://dpvbwf6tup4nv" path="res://assets/sounds/coin.wav" id="3_2r0i3"]
 [ext_resource type="Texture2D" uid="uid://bvqspittqfn0q" path="res://assets/sprites/Shock Sweeper/slam with VFX.png" id="3_5om4x"]
 [ext_resource type="Texture2D" uid="uid://bumbr20aegnhq" path="res://assets/sprites/Shock Sweeper/jump.png" id="3_fr6x3"]
+[ext_resource type="AudioStream" uid="uid://blfb73h84yeuq" path="res://assets/sounds/explosion.wav" id="4_b7x3s"]
 [ext_resource type="Texture2D" uid="uid://c4w5te0qnk10a" path="res://assets/sprites/Shock Sweeper/wake.png" id="6_v0ul8"]
 [ext_resource type="AudioStream" uid="uid://dalrohhwvrw7o" path="res://assets/sounds/jump.wav" id="10_q2606"]
 [ext_resource type="AudioStream" uid="uid://bruu4kec3yynp" path="res://assets/sounds/tap.wav" id="11_0r47l"]
@@ -270,7 +273,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(6, 1)]
+"values": [Vector2(0, 0), Vector2(6, 0)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -457,7 +460,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("../../Walk2SFX:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -469,7 +472,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("../../Walk1SFX:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -478,6 +481,23 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"handle_footstep_sound"
+}, {
+"args": [],
+"method": &"handle_footstep_sound"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xtni2"]
@@ -783,6 +803,12 @@ animations = [{
 z_index = 5
 position = Vector2(10, 0)
 script = ExtResource("1_kdwoi")
+
+[node name="AudioManager" parent="." instance=ExtResource("2_t4huo")]
+position = Vector2(-10, 0)
+grass_sounds = Array[AudioStream]([ExtResource("3_2r0i3"), ExtResource("3_2r0i3"), ExtResource("3_2r0i3")])
+metal_sounds = Array[AudioStream]([ExtResource("4_b7x3s"), ExtResource("4_b7x3s"), ExtResource("4_b7x3s")])
+footstep_sounds = Array[AudioStream]([ExtResource("11_0r47l"), ExtResource("11_0r47l")])
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-16.5, 5.5)
