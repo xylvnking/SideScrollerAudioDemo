@@ -39,6 +39,10 @@ var current_footstep_index: int = 0
 
 @export var should_vary_footstep_pitches: bool = true
 @export var max_distance: float = 1000
+var footstep_pitch: float = 1
+
+
+@export var metal_footstep_sounds_2: AudioStreamRandomizer
 
 @export var base_sounds: Array[AudioStream] = []
 var base_audio_player: AudioStreamPlayer2D
@@ -124,6 +128,10 @@ func play_sound(sound_name: String, volume: float = 0, custom_position: Vector2 
 func play_looping_sound():
 	pass
 
+func play_material_landing():
+	footstep_pitch = .5
+	play_material_footstep()
+
 func play_material_footstep():
 	if surface_check_ray_cast_2d.is_colliding():
 		#print(ray_cast_2d.get_collider())
@@ -138,8 +146,7 @@ func play_material_footstep():
 		else:
 			current_material = "default"
 			
-func play_footstep_sound_for_material(material: String):
-	
+func play_footstep_sound_for_material(material: String = 'default'):
 	var sounds_array = material_sounds[material]
 	
 	if sounds_array.size() == 0:
@@ -149,7 +156,8 @@ func play_footstep_sound_for_material(material: String):
 	var current_index = material_sounds_indices[material]
 
 # Select the sound at the current index
-	var sound = sounds_array[current_index]
+	#var sound = sounds_array[current_index]
+	var sound = metal_footstep_sounds_2
 
 # Play the selected sound
 	var audio_player = AudioStreamPlayer2D.new()
@@ -163,100 +171,27 @@ func play_footstep_sound_for_material(material: String):
 		if current_index % 2 == 0:
 			audio_player.pitch_scale = 1.01
 		else:
-			audio_player.pitch_scale = .99
-			
+			audio_player.pitch_scale = .9
+	audio_player.pitch_scale *= footstep_pitch
+	
+	# Play sound
 	audio_player.play()
 
-# Schedule the removal of the AudioStreamPlayer2D after playback
-	var sound_duration = audio_player.stream.get_length()
+	# Create a Timer to handle cleanup after playback
 	var timer = Timer.new()
-	timer.set_wait_time(sound_duration)
 	timer.set_one_shot(true)
+	timer.set_wait_time(sound.get_length())  # Set the wait time to the length of the sound
 	add_child(timer)
 
-	timer.start()
+	# Connect the timer's timeout signal to queue_free the audio player and itself
 	timer.timeout.connect(func() -> void:
 		audio_player.queue_free()
 		timer.queue_free()
 	)
 
+	# Start the timer
+	timer.start()
+	
 # Update the index to play the next sound, looping back to the start
 	material_sounds_indices[material] = (current_index + 1) % sounds_array.size()
-	
-	######
-	
-	#if not material_sounds.has(current_material):
-		#print("Material not found: " + current_material)
-		#return
-#
-	#var footstep_sounds = material_sounds[current_material]
-	#if footstep_sounds.size() == 0:
-		#print("No sounds available for material: " + current_material)
-		#return
-#
-	## Play a random footstep sound from the array
-	#var sound = footstep_sounds[randi() % footstep_sounds.size()]
-	#var audio_player = AudioStreamPlayer2D.new()
-	#add_child(audio_player)
-	#audio_player.stream = sound
-	#audio_player.play()
-#
-	## Queue free the audio player after the sound finishes
-	#var sound_duration = audio_player.stream.get_length()
-	#var timer = Timer.new()
-	#timer.set_wait_time(sound_duration)
-	#timer.set_one_shot(true)
-	#add_child(timer)
-	#
-	#timer.start()
-	#timer.timeout.connect(func() -> void:
-		#audio_player.queue_free()
-		#timer.queue_free()
-	#)
-	
-	#####
-	
-
-
-
-#func play_footstep(): # should this have a material? how often do you NOT have footstep materials?
-	#if footstep_sounds.size() == 0:
-		#print("No footstep sounds available.")
-		#return
-	#
-	## Get the next footstep sound
-	#var sound = footstep_sounds[current_footstep_index]
-	## Create and play the audio
-	#var audio_player = AudioStreamPlayer2D.new()
-	#add_child(audio_player)
-	#audio_player.stream = sound
-	#
-	## Handles varying footstep pitch, useful to differentiate left-right if the source samples don't.
-	#if should_vary_footstep_pitches:
-		#if current_footstep_index % 2 == 0:
-			#audio_player.pitch_scale = 1.05
-		#else:
-			#audio_player.pitch_scale = .95
-	#
-	#audio_player.max_distance = max_distance
-	#
-	#if footstep_sounds_volume:
-		#audio_player.volume_db = footstep_sounds_volume
-#
-	#audio_player.play()
-	#
-	## Schedule removal after playing
-	#var sound_duration = audio_player.stream.get_length()
-	#var timer = Timer.new()
-	#timer.set_wait_time(sound_duration)
-	#timer.set_one_shot(true)
-	#add_child(timer)
-	#
-	#timer.start()
-	#timer.timeout.connect(func() -> void:
-		#audio_player.queue_free()
-		#timer.queue_free()
-	#)
-#
-	## Update index to use the next sound
-	#current_footstep_index = (current_footstep_index + 1) % footstep_sounds.size()
+	footstep_pitch = 1

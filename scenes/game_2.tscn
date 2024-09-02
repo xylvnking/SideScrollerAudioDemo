@@ -316,3 +316,6 @@ text = "need health?"
 
 [node name="Truck" parent="." instance=ExtResource("10_td58y")]
 position = Vector2(2137, -29)
+
+[node name="car5" parent="." instance=ExtResource("15_dis84")]
+position = Vector2(508, -15)

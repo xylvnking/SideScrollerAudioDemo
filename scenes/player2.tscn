@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cn8xxt57xbc7t"]
+[gd_scene load_steps=68 format=3 uid="uid://cn8xxt57xbc7t"]
 
 [ext_resource type="Script" path="res://scenes/player2.gd" id="1_kdwoi"]
 [ext_resource type="Texture2D" uid="uid://b80o0xpvi36cv" path="res://assets/sprites/Shock Sweeper/shuffe(move).png" id="1_rh8aw"]
@@ -7,13 +7,40 @@
 [ext_resource type="PackedScene" uid="uid://cmmb8q8ubvtqt" path="res://scenes/audio_manager.tscn" id="2_t4huo"]
 [ext_resource type="Texture2D" uid="uid://btlfirw3pic6l" path="res://assets/sprites/Shock Sweeper/static idle.png" id="2_ypomk"]
 [ext_resource type="Texture2D" uid="uid://cvj5pg3634ws5" path="res://assets/sprites/Shock Sweeper/Shock Sweeper All (88x30).png" id="3_1o655"]
-[ext_resource type="AudioStream" uid="uid://dpvbwf6tup4nv" path="res://assets/sounds/coin.wav" id="3_2r0i3"]
 [ext_resource type="Texture2D" uid="uid://bvqspittqfn0q" path="res://assets/sprites/Shock Sweeper/slam with VFX.png" id="3_5om4x"]
 [ext_resource type="Texture2D" uid="uid://bumbr20aegnhq" path="res://assets/sprites/Shock Sweeper/jump.png" id="3_fr6x3"]
+[ext_resource type="AudioStream" uid="uid://cit58khslordw" path="res://assets/sounds/footsteps/metalfootstep1.mp3" id="5_cc6xw"]
+[ext_resource type="AudioStream" uid="uid://4enjaudeyf3r" path="res://assets/sounds/footsteps/metalfootstep2.mp3" id="6_fk1e8"]
 [ext_resource type="Texture2D" uid="uid://c4w5te0qnk10a" path="res://assets/sprites/Shock Sweeper/wake.png" id="6_v0ul8"]
+[ext_resource type="AudioStream" uid="uid://bkofdj575bbox" path="res://assets/sounds/footsteps/metalfootstep3.mp3" id="7_jhx4w"]
+[ext_resource type="AudioStream" uid="uid://b0r0ecriqgeyh" path="res://assets/sounds/footsteps/metalfootstep4.mp3" id="8_kuxfc"]
 [ext_resource type="AudioStream" uid="uid://dalrohhwvrw7o" path="res://assets/sounds/jump.wav" id="10_q2606"]
 [ext_resource type="AudioStream" uid="uid://bruu4kec3yynp" path="res://assets/sounds/tap.wav" id="11_0r47l"]
 [ext_resource type="AudioStream" uid="uid://s63yggkpj3jm" path="res://assets/sounds/hurt.wav" id="12_qjcbt"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nseds"]
+playback_mode = 2
+streams_count = 4
+stream_0/stream = ExtResource("5_cc6xw")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_fk1e8")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_jhx4w")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("8_kuxfc")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lm2q5"]
+random_pitch = 6.1
+streams_count = 4
+stream_0/stream = ExtResource("5_cc6xw")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_fk1e8")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_jhx4w")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("8_kuxfc")
+stream_3/weight = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s88vl"]
 size = Vector2(9, 19)
@@ -445,6 +472,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_4s1c8"]
 resource_name = "walk"
 length = 0.80001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -805,10 +833,12 @@ script = ExtResource("1_kdwoi")
 
 [node name="AudioManager" parent="." instance=ExtResource("2_t4huo")]
 position = Vector2(-10, 0)
-default_footstep_sounds = Array[AudioStream]([ExtResource("11_0r47l"), ExtResource("11_0r47l")])
+default_footstep_sounds = Array[AudioStream]([ExtResource("11_0r47l")])
 grass_footstep_sounds = Array[AudioStream]([ExtResource("12_qjcbt"), ExtResource("12_qjcbt")])
-metal_footstep_sounds = Array[AudioStream]([ExtResource("3_2r0i3"), ExtResource("3_2r0i3")])
+metal_footstep_sounds = Array[AudioStream]([SubResource("AudioStreamRandomizer_nseds")])
 footstep_sounds = Array[AudioStream]([ExtResource("11_0r47l"), ExtResource("11_0r47l")])
+should_vary_footstep_pitches = false
+metal_footstep_sounds_2 = SubResource("AudioStreamRandomizer_lm2q5")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-16.5, 5.5)

@@ -3,6 +3,12 @@ extends CharacterBody2D
 # flip offset sprite
 # https://youtu.be/rydahiHyUvI
 
+#preload("res://assets/sounds/footsteps/metalfootstep1.mp3")
+#preload("res://assets/sounds/footsteps/metalfootstep2.mp3")
+#preload("res://assets/sounds/footsteps/metalfootstep3.mp3")
+#preload("res://assets/sounds/footsteps/metalfootstep4.mp3")
+
+
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -49,15 +55,45 @@ func handle_jump():
 	
 func heal():
 	health = 100
+
+var was_on_ground = false
+var is_on_ground = false
 	
 func _ready():
 	animated_sprite.play("wake")
 
 func _physics_process(delta):
+	is_on_ground = is_on_floor()
+	
+	# Check if the player has just landed
+	if is_on_ground and not was_on_ground:
+		audio_manager.play_material_landing()
+		var timer = Timer.new()
+		timer.set_wait_time(.05)
+		timer.set_one_shot(true)
+		add_child(timer)
+
+		timer.start()
+		timer.timeout.connect(func() -> void:
+			timer.queue_free()
+			audio_manager.play_material_landing()
+		)
+		
+		#SHOULD PLAY double footstep sounds at lower pitch to emulate jumping landing and double higher for jump mayyybe??? 
+
+	# Update previous ground status
+	was_on_ground = is_on_ground
+	
+	
+	
+	
 	# Add the gravity.
 	if not is_on_floor():
 		jumping = false
 		velocity.y += gravity * delta
+	
+	#if is_on_floor()
+	
 	
 	#if Input.is_action_just_pressed("attack_1") && is_on_floor():
 		#animation_player.play("attack_1")
