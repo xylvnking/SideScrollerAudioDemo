@@ -8,6 +8,7 @@ extends Node2D
 	# maybe it does make sense to have it on the surface
 	# but then either way one has to handle all cases of the other
 		# and this makes more sense to me logically
+# Adding 'distance' variable which would send it to other busses (low passed reverb etc)
 	
 @onready var surface_check_ray_cast_2d = $SurfaceCheckRayCast2D
 @export var surface_check_ray_cast_2d_distance: float = 10
@@ -15,15 +16,13 @@ extends Node2D
 @export var footstep_audio_bus: String = "Master"
 # Dictionary for storing sound effect paths or preloaded resources
 # Entries can be added in the Inspector
-@export var sound_effects: Dictionary = {
-	"attack": "res://assets/sounds/woosh8bit.wav",
-	"hit": "res://assets/sounds/hurt.wav",
-	"die": "res://assets/sounds/explosion.wav"
-}
 
 @export var sound_effects_main: Array[CustomAudioResource]
+@export var footsteps_all: Array[CustomAudioResource]
 
+@export var custom_footsteps: CustomAudioResourceArray
 
+var footstep_selection_index: int = 7
 
 var current_material: String = "default"
 
@@ -40,7 +39,7 @@ var footstep_pitch: float = 1
 @export var footstep_sounds_volume: float = 0
 
 @export var should_vary_footstep_pitches: bool = true
-@export var footstep_pitch_scale_modifier: float = 0
+#@export var footstep_pitch_scale_modifier: float = 0
 
 @export var max_distance: float = 1000
 
@@ -78,7 +77,6 @@ func _ready():
 
 func _on_base_timer_timeout():
 	if base_sounds.size() == 0:
-		#print("No base sounds available.")
 		return
 
 	# Pick a random sound from the array and play it
@@ -94,42 +92,8 @@ func reset_timer_with_random_value():
 	base_timer.wait_time = random_time
 	base_timer.start()
 
-
-
-
-# UNUSED????
-# Play sound with the option to use the reference node's position or a custom one
-#func play_sound(sound_name: String, volume: float = 0, custom_position: Vector2 = Vector2()):
-func play_sound(sound_name: String, volume: float = 0, custom_position: Vector2 = Vector2()):
-	var sound_path = sound_effects.get(sound_name, null)
-	
-	if sound_path == null:
-		print("Error: Sound not found: " + sound_name)
-		return
-	
-	# Dynamically create a new AudioStreamPlayer2D node
-	var audio_player = AudioStreamPlayer2D.new()
-	add_child(audio_player)  # Add the audio player as a child node
-	
-	audio_player.stream = load(sound_path)  # Load the sound file
-	audio_player.max_distance = max_distance
-	
-	if volume:
-		audio_player.volume_db = volume
-		
-	# Play the sound
-	audio_player.play()
-	audio_player.finished.connect(func() -> void:
-		audio_player.queue_free()
-		)
-
-
-
-
-
-
-
 func play_looping_sound():
+	# did not implement this yet
 	pass
 
 func play_material_landing():
@@ -138,35 +102,82 @@ func play_material_landing():
 
 func play_material_footstep():
 	if surface_check_ray_cast_2d.is_colliding():
-		if surface_check_ray_cast_2d.get_collider().is_in_group("metal"):
-			current_material = 'metal'
+		if surface_check_ray_cast_2d.get_collider().is_in_group("concrete"):
+			#current_material = 'concrete'
+			footstep_selection_index = 0
 			play_footstep_sound_for_material(current_material)
 			return
 		if surface_check_ray_cast_2d.get_collider().is_in_group("metal_grate"):
-			current_material = 'metal_grate'
+			#current_material = 'metal_grate'
+			footstep_selection_index = 1
+			play_footstep_sound_for_material(current_material)
+			return
+		if surface_check_ray_cast_2d.get_collider().is_in_group("metal"):
+			#current_material = 'metal'
+			footstep_selection_index = 2
 			play_footstep_sound_for_material(current_material)
 			return
 		if surface_check_ray_cast_2d.get_collider().is_in_group("metal_car"):
-			current_material = 'metal_car'
+			#current_material = 'metal_car'
+			footstep_selection_index = 3
 			play_footstep_sound_for_material(current_material)
 			return
 		if surface_check_ray_cast_2d.get_collider().is_in_group("grass"):
-			current_material = 'grass'
-			play_footstep_sound_for_material(current_material)
-			return
-		if surface_check_ray_cast_2d.get_collider().is_in_group("concrete"):
-			current_material = 'concrete'
+			#current_material = 'grass'
+			footstep_selection_index = 4
 			play_footstep_sound_for_material(current_material)
 			return
 		else:
 			print('this material type has either not been added, or the raycast is not reaching it')
 			current_material = "default"
-			#return
+			return
+		#match surface_check_ray_cast_2d.get_collider().get_groups():
+			#['concrete']:
+				##current_material = 'concrete'
+				#footstep_selection_index = 0
+				#play_footstep_sound_for_material(current_material)
+				#return
+			#['metal_grate']:
+				##current_material = 'metal_grate'
+				#footstep_selection_index = 1
+				#play_footstep_sound_for_material(current_material)
+				#return
+			#['metal']:
+				##current_material = 'metal'
+				#footstep_selection_index = 2
+				#play_footstep_sound_for_material(current_material)
+				#return
+			#['metal_car']:
+				##current_material = 'metal_car'
+				#footstep_selection_index = 3
+				#play_footstep_sound_for_material(current_material)
+				#return
+			#['grass']:
+				##current_material = 'grass'
+				#footstep_selection_index = 4
+				#play_footstep_sound_for_material(current_material)
+				#return
+			#_:
+				#print('This material type has either not been added, or the raycast is not reaching it')
+				#return
 			
 func play_footstep_sound_for_material(material: String = 'default'):
-	
+	#if footsteps_all.size() < 1:
+		#return
+	#if footsteps_all[footstep_selection_index]:
+		#return
+	#if footstep_selection_index >= footsteps_all.size() or footstep_selection_index < 0:
+		#return
+	if footstep_selection_index >= custom_footsteps.sounds.size() or footstep_selection_index < 0:
+		print('heck')
+		return
 	# Selecting the stream(randomizer) according to the material passed in by play_material_footstep()
-	var sound = footstep_material_sounds[material]
+	#var sound = footstep_material_sounds[material]
+	#var sound = footsteps_all[footstep_selection_index].sound_stream
+	var sound = custom_footsteps.sounds[footstep_selection_index].sound_stream
+	
+	#print(custom_footsteps.sounds[footstep_selection_index].sound_stream)
+	
 	if !sound:
 		print("No audio has been provided for this material")
 		footstep_pitch = 1
@@ -179,9 +190,10 @@ func play_footstep_sound_for_material(material: String = 'default'):
 	audio_player.bus = footstep_audio_bus
 	audio_player.max_distance = max_distance
 	
-	if footstep_sounds_volume:
-		audio_player.volume_db = footstep_sounds_volume
-		
+	#if footstep_sounds_volume:
+		#audio_player.volume_db = footstep_sounds_volume
+	audio_player.volume_db += custom_footsteps.add_to_volume
+	
 	# adds alternating pitch offset to footsteps 
 	if should_vary_footstep_pitches:
 		if footstep_pitch_flipflop:
@@ -190,8 +202,9 @@ func play_footstep_sound_for_material(material: String = 'default'):
 		else:
 			audio_player.pitch_scale = .95
 			footstep_pitch_flipflop = true
+	audio_player.pitch_scale += custom_footsteps.add_to_pitch_scale
 	audio_player.pitch_scale *= footstep_pitch
-	audio_player.pitch_scale += footstep_pitch_scale_modifier
+	#audio_player.pitch_scale += footstep_pitch_scale_modifier
 	
 	# Play sound
 	audio_player.play()
@@ -204,14 +217,6 @@ func play_footstep_sound_for_material(material: String = 'default'):
 	# Reseting footstep pitch, since if it's triggered on 'landing' it needs to be reset for regular footsteps
 	footstep_pitch = 1
 	
-	
-	
-func get_audio_stream_by_name(sound_name: String) -> AudioStream:
-	for sound in sound_effects_main:
-		if sound.sound_name == sound_name:
-			return sound.sound_stream
-	return null
-
 func play_sound_custom(sound_name: String) -> AudioStreamPlayer2D:
 
 	var custom_sound
@@ -225,7 +230,6 @@ func play_sound_custom(sound_name: String) -> AudioStreamPlayer2D:
 	if !custom_sound:
 		print("Sound not found: " + sound_name)
 		return null
-	
 
 	if custom_sound.sound_stream != null:
 		

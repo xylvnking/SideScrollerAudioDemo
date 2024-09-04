@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://cn8xxt57xbc7t"]
+[gd_scene load_steps=93 format=3 uid="uid://cn8xxt57xbc7t"]
 
 [ext_resource type="Script" path="res://scenes/player2.gd" id="1_kdwoi"]
 [ext_resource type="Texture2D" uid="uid://b80o0xpvi36cv" path="res://assets/sprites/Shock Sweeper/shuffe(move).png" id="1_rh8aw"]
@@ -30,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://rfj00qoryi0f" path="res://assets/sounds/footsteps/Concrete Footstep 8 GSSD.wav" id="16_igiyc"]
 [ext_resource type="AudioStream" uid="uid://btvwi431s3iga" path="res://assets/sounds/footsteps/Metal Grate Foostep 1 GSSD.wav" id="17_ylra5"]
 [ext_resource type="AudioStream" uid="uid://bp7ysse7wt8yx" path="res://assets/sounds/footsteps/Metal Grate Foostep 2 GSSD.wav" id="18_mxyx4"]
+[ext_resource type="Resource" uid="uid://b3tmwnsk31byj" path="res://custom_resources/footsteps.tres" id="18_y5tp1"]
 [ext_resource type="AudioStream" uid="uid://bmv5uyyr83w0d" path="res://assets/sounds/footsteps/Metal Grate Foostep 3 GSSD.wav" id="19_0tkrv"]
 [ext_resource type="AudioStream" uid="uid://cpmevpe0bct7y" path="res://assets/sounds/footsteps/Metal Grate Foostep 4 GSSD.wav" id="20_hqukg"]
 [ext_resource type="AudioStream" uid="uid://dqxrsucaf666" path="res://assets/sounds/sidescrollerambience GSSD.mp3" id="33_nvp5w"]
@@ -877,6 +878,30 @@ should_randomize_pitch = true
 randomize_pitch_amount = 0.05
 sound_max_polyphony = 1
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_da65s"]
+playback_mode = 2
+streams_count = 4
+stream_0/stream = ExtResource("17_ylra5")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("18_mxyx4")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("19_0tkrv")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("20_hqukg")
+stream_3/weight = 1.0
+
+[sub_resource type="Resource" id="Resource_yeggp"]
+script = ExtResource("3_md7ig")
+sound_stream = SubResource("AudioStreamRandomizer_da65s")
+sound_name = "metal_grate"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = true
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1btnj"]
 playback_mode = 2
 streams_count = 4
@@ -992,6 +1017,8 @@ debug_color = Color(0, 0.6, 0.701961, 0.894118)
 position = Vector2(0, -1)
 surface_check_ray_cast_2d_distance = 20.0
 sound_effects_main = Array[ExtResource("3_md7ig")]([SubResource("Resource_euv3j"), SubResource("Resource_xhome")])
+footsteps_all = Array[ExtResource("3_md7ig")]([SubResource("Resource_yeggp")])
+custom_footsteps = ExtResource("18_y5tp1")
 metal_footstep_sounds = SubResource("AudioStreamRandomizer_1btnj")
 metal_grate_footstep_sounds = SubResource("AudioStreamRandomizer_s5yav")
 metal_car_footstep_sounds = SubResource("AudioStreamRandomizer_rd5mr")

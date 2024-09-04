@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CustomAudioResource" load_steps=2 format=3 uid="uid://baga6fxyjl2vk"]
+
+[ext_resource type="Script" path="res://scripts/custom_audio_resource.gd" id="1_fu384"]
+
+[resource]
+script = ExtResource("1_fu384")
+sound_name = ""
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1

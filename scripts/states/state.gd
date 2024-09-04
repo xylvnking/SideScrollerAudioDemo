@@ -4,10 +4,8 @@ class_name State
 # https://youtu.be/ow_Lum-Agbs
 
 signal Transitioned
-#@export var audio_manager: Node2D # this exposes a parameter on each child state allowing them to select the audio manager.
 @onready var default_audio_manager = get_node_or_null("/root/Path/To/AudioManager")
 @export var audio_manager: Node2D
-#var audio_manager: Node2D
 
 func _ready():
 	# Use the exported audio_manager if set, otherwise use the default

@@ -1,9 +1,30 @@
-[gd_resource type="Resource" script_class="CustomAudioResource" load_steps=3 format=3 uid="uid://dulxqty0enbui"]
+[gd_resource type="Resource" script_class="CustomAudioResource" load_steps=7 format=3 uid="uid://dulxqty0enbui"]
 
 [ext_resource type="Script" path="res://scripts/custom_audio_resource.gd" id="1_f8w2f"]
-[ext_resource type="AudioStream" uid="uid://dalrohhwvrw7o" path="res://assets/sounds/jump.wav" id="2_e83ia"]
+[ext_resource type="AudioStream" uid="uid://btvwi431s3iga" path="res://assets/sounds/footsteps/Metal Grate Foostep 1 GSSD.wav" id="2_ecac1"]
+[ext_resource type="AudioStream" uid="uid://bp7ysse7wt8yx" path="res://assets/sounds/footsteps/Metal Grate Foostep 2 GSSD.wav" id="3_c11wv"]
+[ext_resource type="AudioStream" uid="uid://bmv5uyyr83w0d" path="res://assets/sounds/footsteps/Metal Grate Foostep 3 GSSD.wav" id="4_umnx4"]
+[ext_resource type="AudioStream" uid="uid://cpmevpe0bct7y" path="res://assets/sounds/footsteps/Metal Grate Foostep 4 GSSD.wav" id="5_koyrj"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8hwew"]
+streams_count = 4
+stream_0/stream = ExtResource("2_ecac1")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_c11wv")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_umnx4")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("5_koyrj")
+stream_3/weight = 1.0
 
 [resource]
 script = ExtResource("1_f8w2f")
-soundFXStream = ExtResource("2_e83ia")
-soundFXName = "jump"
+sound_stream = SubResource("AudioStreamRandomizer_8hwew")
+sound_name = "metal_grate"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1

@@ -18,8 +18,6 @@ func _ready():
 		audio_stream_player_2d.stream = audio_file
 	reset_timer_with_random_value()
 	
-
-
 func _on_timer_timeout():
 	audio_stream_player_2d.play()
 	reset_timer_with_random_value()

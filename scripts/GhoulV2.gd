@@ -36,11 +36,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func take_damage(damage_amount):
-	#print('should take damage')
 	health -= damage_amount
 	if health <= 0:
 		state_machine.change_state("EnemyDeath")
-		#die()
 	else:
 		state_machine.change_state("EnemyHit")
-		#state_machine.current_state.Transitioned.emit(self, "EnemyHit")  # Calls state change from state machine script
