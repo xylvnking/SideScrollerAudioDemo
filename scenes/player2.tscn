@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cn8xxt57xbc7t"]
+[gd_scene load_steps=90 format=3 uid="uid://cn8xxt57xbc7t"]
 
 [ext_resource type="Script" path="res://scenes/player2.gd" id="1_kdwoi"]
 [ext_resource type="Texture2D" uid="uid://b80o0xpvi36cv" path="res://assets/sprites/Shock Sweeper/shuffe(move).png" id="1_rh8aw"]
@@ -9,38 +9,32 @@
 [ext_resource type="Texture2D" uid="uid://cvj5pg3634ws5" path="res://assets/sprites/Shock Sweeper/Shock Sweeper All (88x30).png" id="3_1o655"]
 [ext_resource type="Texture2D" uid="uid://bvqspittqfn0q" path="res://assets/sprites/Shock Sweeper/slam with VFX.png" id="3_5om4x"]
 [ext_resource type="Texture2D" uid="uid://bumbr20aegnhq" path="res://assets/sprites/Shock Sweeper/jump.png" id="3_fr6x3"]
+[ext_resource type="Script" path="res://scripts/custom_audio_resource.gd" id="3_md7ig"]
+[ext_resource type="AudioStream" uid="uid://b25qj1ythq2mv" path="res://assets/sounds/jump GSSD.wav" id="4_bcgde"]
 [ext_resource type="AudioStream" uid="uid://cit58khslordw" path="res://assets/sounds/footsteps/metalfootstep1.mp3" id="5_cc6xw"]
 [ext_resource type="AudioStream" uid="uid://4enjaudeyf3r" path="res://assets/sounds/footsteps/metalfootstep2.mp3" id="6_fk1e8"]
 [ext_resource type="Texture2D" uid="uid://c4w5te0qnk10a" path="res://assets/sprites/Shock Sweeper/wake.png" id="6_v0ul8"]
 [ext_resource type="AudioStream" uid="uid://bkofdj575bbox" path="res://assets/sounds/footsteps/metalfootstep3.mp3" id="7_jhx4w"]
 [ext_resource type="AudioStream" uid="uid://b0r0ecriqgeyh" path="res://assets/sounds/footsteps/metalfootstep4.mp3" id="8_kuxfc"]
+[ext_resource type="AudioStream" uid="uid://cgowkboqoguy7" path="res://assets/sounds/footsteps/Concrete Footstep 1 GSSD.wav" id="9_y6sc3"]
+[ext_resource type="AudioStream" uid="uid://e8c5a0txvsot" path="res://assets/sounds/footsteps/Concrete Footstep 2 GSSD.wav" id="10_clfbj"]
 [ext_resource type="AudioStream" uid="uid://dalrohhwvrw7o" path="res://assets/sounds/jump.wav" id="10_q2606"]
 [ext_resource type="AudioStream" uid="uid://bruu4kec3yynp" path="res://assets/sounds/tap.wav" id="11_0r47l"]
+[ext_resource type="AudioStream" uid="uid://crwm01qlymiig" path="res://assets/sounds/footsteps/Concrete Footstep 3 GSSD.wav" id="11_pr3sa"]
+[ext_resource type="AudioStream" uid="uid://mn2cea4ficwh" path="res://assets/sounds/footsteps/Concrete Footstep 4 GSSD.wav" id="12_a7tgb"]
 [ext_resource type="AudioStream" uid="uid://s63yggkpj3jm" path="res://assets/sounds/hurt.wav" id="12_qjcbt"]
+[ext_resource type="AudioStream" uid="uid://blxdridx148pl" path="res://assets/sounds/Electric Swing 1 GSSD.wav" id="13_e0vfq"]
+[ext_resource type="AudioStream" uid="uid://dmhfqqqdp2ecn" path="res://assets/sounds/footsteps/Concrete Footstep 5 GSSD.wav" id="13_trxj6"]
+[ext_resource type="AudioStream" uid="uid://bsequcqj4ejn5" path="res://assets/sounds/footsteps/Concrete Footstep 6 GSSD.wav" id="14_ldppb"]
+[ext_resource type="AudioStream" uid="uid://8dthdrrcqxyc" path="res://assets/sounds/footsteps/Concrete Footstep 7 GSSD.wav" id="15_ibkc4"]
+[ext_resource type="AudioStream" uid="uid://rfj00qoryi0f" path="res://assets/sounds/footsteps/Concrete Footstep 8 GSSD.wav" id="16_igiyc"]
+[ext_resource type="AudioStream" uid="uid://btvwi431s3iga" path="res://assets/sounds/footsteps/Metal Grate Foostep 1 GSSD.wav" id="17_ylra5"]
+[ext_resource type="AudioStream" uid="uid://bp7ysse7wt8yx" path="res://assets/sounds/footsteps/Metal Grate Foostep 2 GSSD.wav" id="18_mxyx4"]
+[ext_resource type="AudioStream" uid="uid://bmv5uyyr83w0d" path="res://assets/sounds/footsteps/Metal Grate Foostep 3 GSSD.wav" id="19_0tkrv"]
+[ext_resource type="AudioStream" uid="uid://cpmevpe0bct7y" path="res://assets/sounds/footsteps/Metal Grate Foostep 4 GSSD.wav" id="20_hqukg"]
+[ext_resource type="AudioStream" uid="uid://dqxrsucaf666" path="res://assets/sounds/sidescrollerambience GSSD.mp3" id="33_nvp5w"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nseds"]
-playback_mode = 2
-streams_count = 4
-stream_0/stream = ExtResource("5_cc6xw")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("6_fk1e8")
-stream_1/weight = 1.0
-stream_2/stream = ExtResource("7_jhx4w")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("8_kuxfc")
-stream_3/weight = 1.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lm2q5"]
-random_pitch = 6.1
-streams_count = 4
-stream_0/stream = ExtResource("5_cc6xw")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("6_fk1e8")
-stream_1/weight = 1.0
-stream_2/stream = ExtResource("7_jhx4w")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("8_kuxfc")
-stream_3/weight = 1.0
+[sub_resource type="LabelSettings" id="LabelSettings_hct7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s88vl"]
 size = Vector2(9, 19)
@@ -344,7 +338,7 @@ tracks/5/keys = {
 }
 tracks/6/type = "audio"
 tracks/6/imported = false
-tracks/6/enabled = true
+tracks/6/enabled = false
 tracks/6/path = NodePath("../../WooshSFX")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
@@ -355,7 +349,7 @@ tracks/6/keys = {
 tracks/6/use_blend = true
 tracks/7/type = "value"
 tracks/7/imported = false
-tracks/7/enabled = true
+tracks/7/enabled = false
 tracks/7/path = NodePath("../../WooshSFX:stream")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
@@ -367,7 +361,7 @@ tracks/7/keys = {
 }
 tracks/8/type = "value"
 tracks/8/imported = false
-tracks/8/enabled = true
+tracks/8/enabled = false
 tracks/8/path = NodePath("../../WooshSFX:playing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
@@ -376,6 +370,20 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../AudioManager")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["attack"],
+"method": &"play_sound_custom"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_yrrk0"]
@@ -422,6 +430,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [70, 71]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_hit"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_mjuko"]
 resource_name = "idle"
@@ -458,7 +480,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("../../JumpSFX:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -826,19 +848,103 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmtgv"]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ptnqu"]
+streams_count = 1
+stream_0/stream = ExtResource("4_bcgde")
+stream_0/weight = 1.0
+
+[sub_resource type="Resource" id="Resource_euv3j"]
+script = ExtResource("3_md7ig")
+sound_stream = SubResource("AudioStreamRandomizer_ptnqu")
+sound_name = "jump"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = true
+randomize_pitch_amount = 0.1
+sound_max_polyphony = 1
+
+[sub_resource type="Resource" id="Resource_xhome"]
+script = ExtResource("3_md7ig")
+sound_stream = ExtResource("13_e0vfq")
+sound_name = "attack"
+sound_volume = 6
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = true
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1btnj"]
+playback_mode = 2
+streams_count = 4
+stream_0/stream = ExtResource("5_cc6xw")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_fk1e8")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_jhx4w")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("8_kuxfc")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s5yav"]
+playback_mode = 2
+streams_count = 4
+stream_0/stream = ExtResource("17_ylra5")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("18_mxyx4")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("19_0tkrv")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("20_hqukg")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rd5mr"]
+streams_count = 4
+stream_0/stream = ExtResource("5_cc6xw")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_fk1e8")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_jhx4w")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("8_kuxfc")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_afiym"]
+playback_mode = 2
+streams_count = 8
+stream_0/stream = ExtResource("9_y6sc3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("10_clfbj")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("11_pr3sa")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("12_a7tgb")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("13_trxj6")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("14_ldppb")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("15_ibkc4")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("16_igiyc")
+stream_7/weight = 1.0
+
 [node name="Player2" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 position = Vector2(10, 0)
 script = ExtResource("1_kdwoi")
 
-[node name="AudioManager" parent="." instance=ExtResource("2_t4huo")]
-position = Vector2(-10, 0)
-default_footstep_sounds = Array[AudioStream]([ExtResource("11_0r47l")])
-grass_footstep_sounds = Array[AudioStream]([ExtResource("12_qjcbt"), ExtResource("12_qjcbt")])
-metal_footstep_sounds = Array[AudioStream]([SubResource("AudioStreamRandomizer_nseds")])
-footstep_sounds = Array[AudioStream]([ExtResource("11_0r47l"), ExtResource("11_0r47l")])
-should_vary_footstep_pitches = false
-metal_footstep_sounds_2 = SubResource("AudioStreamRandomizer_lm2q5")
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -13.0
+offset_right = 46.0
+offset_bottom = 10.0
+scale = Vector2(0.400002, 0.400002)
+text = "Health: 2"
+label_settings = SubResource("LabelSettings_hct7s")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-16.5, 5.5)
@@ -882,6 +988,16 @@ shape = SubResource("CircleShape2D_bmtgv")
 disabled = true
 debug_color = Color(0, 0.6, 0.701961, 0.894118)
 
+[node name="AudioManager" parent="Marker2D" instance=ExtResource("2_t4huo")]
+position = Vector2(0, -1)
+surface_check_ray_cast_2d_distance = 20.0
+sound_effects_main = Array[ExtResource("3_md7ig")]([SubResource("Resource_euv3j"), SubResource("Resource_xhome")])
+metal_footstep_sounds = SubResource("AudioStreamRandomizer_1btnj")
+metal_grate_footstep_sounds = SubResource("AudioStreamRandomizer_s5yav")
+metal_car_footstep_sounds = SubResource("AudioStreamRandomizer_rd5mr")
+concrete_footstep_sounds = SubResource("AudioStreamRandomizer_afiym")
+footstep_sounds_volume = -6.0
+
 [node name="JumpSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_q2606")
 volume_db = -8.529
@@ -903,6 +1019,10 @@ pitch_scale = 1.05
 [node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_qjcbt")
 volume_db = -7.581
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("33_nvp5w")
+autoplay = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Marker2D/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://by35m8gyl2tsc"]
+[gd_scene load_steps=12 format=3 uid="uid://by35m8gyl2tsc"]
 
 [ext_resource type="Script" path="res://scenes/health_pack.gd" id="1_pd1jl"]
 [ext_resource type="Texture2D" uid="uid://diau2sju87kxd" path="res://assets/milk_chocolate.png" id="1_yjm4m"]
+[ext_resource type="PackedScene" uid="uid://cmmb8q8ubvtqt" path="res://scenes/audio_manager.tscn" id="3_jssfw"]
+[ext_resource type="Script" path="res://scripts/custom_audio_resource.gd" id="4_cuaqy"]
+[ext_resource type="AudioStream" uid="uid://dd47wls2gwwsa" path="res://assets/sounds/player sounds/eat health GSSD.wav" id="5_2ssxr"]
 
 [sub_resource type="Animation" id="Animation_q8w0t"]
 length = 0.001
@@ -42,6 +45,29 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjbbp"]
 radius = 14.0029
 
+[sub_resource type="Resource" id="Resource_byf0u"]
+script = ExtResource("4_cuaqy")
+sound_stream = ExtResource("5_2ssxr")
+sound_name = "consumed"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
+[sub_resource type="Resource" id="Resource_i6j76"]
+script = ExtResource("4_cuaqy")
+sound_name = ""
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
 [node name="HealthPack" type="Node2D"]
 position = Vector2(0, -10)
 scale = Vector2(0.5, 0.5)
@@ -63,5 +89,8 @@ autoplay = "float"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main/Area2D"]
 shape = SubResource("CircleShape2D_cjbbp")
+
+[node name="AudioManager" parent="." instance=ExtResource("3_jssfw")]
+sound_effects_main = Array[ExtResource("4_cuaqy")]([SubResource("Resource_byf0u"), SubResource("Resource_i6j76")])
 
 [connection signal="body_entered" from="Main/Area2D" to="." method="_on_area_2d_body_entered"]

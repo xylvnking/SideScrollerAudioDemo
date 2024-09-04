@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bp5onvx624jun"
+path="res://.godot/imported/Ghoul Attack 3 GSSD.wav-58d50371c25b3fd91db41e7557e06e2d.sample"
+
+[deps]
+
+source_file="res://assets/sounds/ghoul sounds/Ghoul Attack 3 GSSD.wav"
+dest_files=["res://.godot/imported/Ghoul Attack 3 GSSD.wav-58d50371c25b3fd91db41e7557e06e2d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

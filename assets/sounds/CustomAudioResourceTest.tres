@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CustomAudioResource" load_steps=3 format=3 uid="uid://dulxqty0enbui"]
+
+[ext_resource type="Script" path="res://scripts/custom_audio_resource.gd" id="1_f8w2f"]
+[ext_resource type="AudioStream" uid="uid://dalrohhwvrw7o" path="res://assets/sounds/jump.wav" id="2_e83ia"]
+
+[resource]
+script = ExtResource("1_f8w2f")
+soundFXStream = ExtResource("2_e83ia")
+soundFXName = "jump"

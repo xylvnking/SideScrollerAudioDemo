@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dd47wls2gwwsa"
+path="res://.godot/imported/eat health GSSD.wav-f46570d5e6b455286bfdf3fde1898ce7.sample"
+
+[deps]
+
+source_file="res://assets/sounds/player sounds/eat health GSSD.wav"
+dest_files=["res://.godot/imported/eat health GSSD.wav-f46570d5e6b455286bfdf3fde1898ce7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

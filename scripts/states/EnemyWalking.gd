@@ -11,7 +11,7 @@ var move_direction : Vector2
 var wander_time : float
 
 var direction = -1
-const SPEED = 25.0
+const SPEED = 20.0
 const JUMP_VELOCITY = -400.0
 
 func randomize_wander():
@@ -37,6 +37,8 @@ func Physics_Update(delta: float):
 		enemy.position.x += direction *  SPEED * delta
 		enemy.velocity.x = direction * SPEED
 	if enemy.velocity.length() > 0:
+		#var random_time = randf_range(0.5, 2.0)  # Random time between 0.5 and 2 seconds
+		#await get_tree().create_timer(random_time).timeout
 		animation_player.play("walk")
 		
 

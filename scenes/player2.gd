@@ -23,19 +23,27 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var marker_2d = $Marker2D
 @onready var animation_player = $AnimationPlayer
 @onready var ray_cast_2d = $PlayerCollision/RayCast2D
-
+ 
 var attacking = false
 var jumping = false
-@onready var audio_manager = $AudioManager
+var hit:bool = false
+#@onready var audio_manager = $AudioManager
+@onready var audio_manager = $Marker2D/AudioManager
+@onready var label = $Label
+
 
 func take_damage(damage_amount):
 	health -= damage_amount
+	hit = true
 	animation_player.play('hit')
+	#if !attacking:
 	attacking = false
 	if health < 0:
 		#queue_free()
 		get_tree().reload_current_scene()
-	print(health)
+
+func reset_hit():
+	hit = false
 
 func play_attack_1_anim():
 	animated_sprite.play("attack_1")
@@ -64,6 +72,7 @@ func _ready():
 
 func _physics_process(delta):
 	is_on_ground = is_on_floor()
+	label.text = str(health)
 	
 	# Check if the player has just landed
 	if is_on_ground and not was_on_ground:
@@ -123,6 +132,8 @@ func _physics_process(delta):
 			
 			jumping = true
 			animation_player.play("jump")
+			#audio_manager.play_sound_custom("jump")
+			var audio_player = audio_manager.play_sound_custom("jump")
 			if ray_cast_2d.is_colliding():
 				pass
 				#print('yeh collide')
@@ -153,7 +164,7 @@ func _physics_process(delta):
 		#animation_player.play('idle')
 		
 		
-	if is_on_floor() && !attacking && !jumping:
+	if is_on_floor() && !attacking && !jumping && !hit:
 		if velocity.x == 0:
 			animation_player.play("idle")
 		else:

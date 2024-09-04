@@ -16,7 +16,7 @@ class_name EnemyHit
 		
 func Enter():
 	if audio_manager:
-		audio_manager.play_sound("hit", -16)
+		audio_manager.play_sound_custom("hit")
 	else:
 		print("AudioManager is not set in enemy hit.")
 	

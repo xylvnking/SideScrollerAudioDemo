@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bmv5uyyr83w0d"
+path="res://.godot/imported/Metal Grate Foostep 3 GSSD.wav-19fb146e08137a44ea66dfd62d5b66b0.sample"
+
+[deps]
+
+source_file="res://assets/sounds/footsteps/Metal Grate Foostep 3 GSSD.wav"
+dest_files=["res://.godot/imported/Metal Grate Foostep 3 GSSD.wav-19fb146e08137a44ea66dfd62d5b66b0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

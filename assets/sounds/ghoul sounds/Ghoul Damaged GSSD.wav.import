@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://oqcjlldkjbpg"
+path="res://.godot/imported/Ghoul Damaged GSSD.wav-4d53ec9148dcad7f8882112626f75735.sample"
+
+[deps]
+
+source_file="res://assets/sounds/ghoul sounds/Ghoul Damaged GSSD.wav"
+dest_files=["res://.godot/imported/Ghoul Damaged GSSD.wav-4d53ec9148dcad7f8882112626f75735.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dkiouco8bg0a5"
+path="res://.godot/imported/jump GSSD.wav-2ce0d06097883053b2c8d82d5507cb37.sample"
+
+[deps]
+
+source_file="res://assets/sounds/player sounds/jump GSSD.wav"
+dest_files=["res://.godot/imported/jump GSSD.wav-2ce0d06097883053b2c8d82d5507cb37.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

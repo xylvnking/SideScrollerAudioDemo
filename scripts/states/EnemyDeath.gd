@@ -6,10 +6,10 @@ class_name EnemyDeath
 
 func Enter():
 	animation_player.play('death')
-	if audio_manager:
-		audio_manager.play_sound("death")
-	else:
-		print("AudioManager is not set in enemy death.")
+	#if audio_manager:
+		#audio_manager.play_sound("death")
+	#else:
+		#print("AudioManager is not set in enemy death.")
 	ghoul_v_2.gravity_enabled = false
 	ghoul_v_2.velocity.x = 0
 	#collision_shape_2d.disabled = true # this doesn't work because it's being relied on elsewhere during the frame, i think

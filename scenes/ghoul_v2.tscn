@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cc76f8inpb8b4"]
+[gd_scene load_steps=36 format=3 uid="uid://cc76f8inpb8b4"]
 
 [ext_resource type="Script" path="res://scripts/GhoulV2.gd" id="1_dtx0y"]
 [ext_resource type="Texture2D" uid="uid://c4jwhtgvvcni0" path="res://assets/DARK - Character Pack 3 (2)/Ghoul/Ghoul Sprite Sheet 62 x 33.png" id="1_kodfr"]
@@ -9,12 +9,77 @@
 [ext_resource type="Script" path="res://scripts/EnemyHit.gd" id="4_tmgi2"]
 [ext_resource type="Script" path="res://scripts/states/EnemyAttacking.gd" id="5_rufsj"]
 [ext_resource type="Script" path="res://scripts/states/EnemyDeath.gd" id="7_n6oc3"]
-[ext_resource type="AudioStream" uid="uid://bruu4kec3yynp" path="res://assets/sounds/tap.wav" id="9_dpkdi"]
-[ext_resource type="AudioStream" uid="uid://dpvbwf6tup4nv" path="res://assets/sounds/coin.wav" id="9_p6vh5"]
-[ext_resource type="AudioStream" uid="uid://s63yggkpj3jm" path="res://assets/sounds/hurt.wav" id="10_s05pl"]
+[ext_resource type="Script" path="res://scripts/custom_audio_resource.gd" id="9_7a2wh"]
+[ext_resource type="AudioStream" uid="uid://cgowkboqoguy7" path="res://assets/sounds/footsteps/Concrete Footstep 1 GSSD.wav" id="9_ceuwm"]
+[ext_resource type="AudioStream" uid="uid://c2mbghjikkx55" path="res://assets/sounds/ghoul sounds/Ghoul Attack 1 GSSD.wav" id="10_ke6ap"]
+[ext_resource type="AudioStream" uid="uid://e8c5a0txvsot" path="res://assets/sounds/footsteps/Concrete Footstep 2 GSSD.wav" id="10_o1lc3"]
+[ext_resource type="AudioStream" uid="uid://15vdwwgxyo0x" path="res://assets/sounds/ghoul sounds/Ghoul Death 1 GSSD.wav" id="11_1i5ax"]
+[ext_resource type="AudioStream" uid="uid://crwm01qlymiig" path="res://assets/sounds/footsteps/Concrete Footstep 3 GSSD.wav" id="11_qa6jt"]
+[ext_resource type="AudioStream" uid="uid://mn2cea4ficwh" path="res://assets/sounds/footsteps/Concrete Footstep 4 GSSD.wav" id="12_rbbno"]
+[ext_resource type="AudioStream" uid="uid://dmhfqqqdp2ecn" path="res://assets/sounds/footsteps/Concrete Footstep 5 GSSD.wav" id="13_af15w"]
+[ext_resource type="AudioStream" uid="uid://oqcjlldkjbpg" path="res://assets/sounds/ghoul sounds/Ghoul Damaged GSSD.wav" id="13_bnbxm"]
+[ext_resource type="AudioStream" uid="uid://bsequcqj4ejn5" path="res://assets/sounds/footsteps/Concrete Footstep 6 GSSD.wav" id="14_74fce"]
+[ext_resource type="AudioStream" uid="uid://8dthdrrcqxyc" path="res://assets/sounds/footsteps/Concrete Footstep 7 GSSD.wav" id="15_x7v6n"]
+[ext_resource type="AudioStream" uid="uid://rfj00qoryi0f" path="res://assets/sounds/footsteps/Concrete Footstep 8 GSSD.wav" id="16_gtdav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_melvh"]
 size = Vector2(12, 23.5)
+
+[sub_resource type="Resource" id="Resource_a4yqr"]
+script = ExtResource("9_7a2wh")
+sound_stream = ExtResource("10_ke6ap")
+sound_name = "attack"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = true
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
+[sub_resource type="Resource" id="Resource_hlaem"]
+script = ExtResource("9_7a2wh")
+sound_stream = ExtResource("11_1i5ax")
+sound_name = "death"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
+[sub_resource type="Resource" id="Resource_a5dq3"]
+script = ExtResource("9_7a2wh")
+sound_stream = ExtResource("13_bnbxm")
+sound_name = "hit"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 2000
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0dnba"]
+playback_mode = 2
+streams_count = 8
+stream_0/stream = ExtResource("9_ceuwm")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("10_o1lc3")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("11_qa6jt")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("12_rbbno")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("13_af15w")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("14_74fce")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("15_x7v6n")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("16_gtdav")
+stream_7/weight = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rchpx"]
 radius = 13.0
@@ -38,7 +103,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Area2D/AttackHitbox:disabled")
+tracks/1/path = NodePath("Sprite2D/Area2D444/AttackHitbox:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -51,6 +116,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_hsifq"]
 resource_name = "attack"
 length = 0.80001
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -66,19 +132,33 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Area2D/AttackHitbox:disabled")
+tracks/1/path = NodePath("Sprite2D/Area2D444/AttackHitbox:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [true, true, false, true, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioManager")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["attack"],
+"method": &"play_sound_custom"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_nlkte"]
 resource_name = "death"
-length = 1.10001
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = false
@@ -101,7 +181,21 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55]
+"values": [65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 54]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioManager")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["death"],
+"method": &"play_sound_custom"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ges5y"]
@@ -225,15 +319,11 @@ script = ExtResource("7_n6oc3")
 audio_manager = NodePath("../../AudioManager")
 
 [node name="AudioManager" parent="." instance=ExtResource("2_bjed4")]
-sound_effects = {
-"attack": "res://assets/sounds/woosh8bit.wav",
-"death": "res://assets/sounds/crow8bit.wav",
-"die": "res://assets/sounds/explosion.wav",
-"hit": "res://assets/sounds/hurt.wav"
-}
-grass_footstep_sounds = Array[AudioStream]([ExtResource("9_p6vh5"), ExtResource("9_p6vh5")])
-metal_footstep_sounds = Array[AudioStream]([ExtResource("10_s05pl"), ExtResource("10_s05pl"), ExtResource("10_s05pl")])
-footstep_sounds = Array[AudioStream]([ExtResource("9_dpkdi"), ExtResource("9_dpkdi"), ExtResource("9_dpkdi"), ExtResource("9_dpkdi")])
+surface_check_ray_cast_2d_distance = 25.0
+sound_effects_main = Array[ExtResource("9_7a2wh")]([SubResource("Resource_a4yqr"), SubResource("Resource_hlaem"), SubResource("Resource_a5dq3")])
+concrete_footstep_sounds = SubResource("AudioStreamRandomizer_0dnba")
+footstep_sounds_volume = -16.0
+footstep_pitch_scale_modifier = 2.0
 base_timer_low = 0.25
 base_timer_high = 2.0
 
@@ -244,9 +334,9 @@ texture = ExtResource("1_kodfr")
 hframes = 11
 vframes = 6
 
-[node name="Area2D" type="Area2D" parent="Marker2D/Sprite2D"]
+[node name="Area2D444" type="Area2D" parent="Marker2D/Sprite2D"]
 
-[node name="AttackHitbox" type="CollisionShape2D" parent="Marker2D/Sprite2D/Area2D"]
+[node name="AttackHitbox" type="CollisionShape2D" parent="Marker2D/Sprite2D/Area2D444"]
 position = Vector2(14, 3)
 shape = SubResource("CircleShape2D_rchpx")
 disabled = true
@@ -266,7 +356,8 @@ autoplay = "idle"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = -13.741
 
-[connection signal="body_entered" from="Marker2D/Sprite2D/Area2D" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Marker2D/Sprite2D/Area2D444" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Marker2D/Sprite2D/Area2D444" to="State/EnemyAttacking" method="_on_area_2d_444_body_entered"]
 [connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyWalking" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="Marker2D/AnimationPlayer" to="State/EnemyHit" method="_on_animation_player_animation_finished"]

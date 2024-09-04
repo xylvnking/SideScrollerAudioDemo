@@ -6,7 +6,7 @@
 a = Vector2(75, -14)
 b = Vector2(-31, -14)
 
-[node name="billboard1" type="StaticBody2D"]
+[node name="billboard1" type="StaticBody2D" groups=["metal_grate"]]
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
 position = Vector2(7, 0)
