@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://mn2cea4ficwh" path="res://assets/sounds/footsteps/Concrete Footstep 4 GSSD.wav" id="12_rbbno"]
 [ext_resource type="AudioStream" uid="uid://dmhfqqqdp2ecn" path="res://assets/sounds/footsteps/Concrete Footstep 5 GSSD.wav" id="13_af15w"]
 [ext_resource type="AudioStream" uid="uid://oqcjlldkjbpg" path="res://assets/sounds/ghoul sounds/Ghoul Damaged GSSD.wav" id="13_bnbxm"]
-[ext_resource type="Resource" uid="uid://b3tmwnsk31byj" path="res://custom_resources/footsteps.tres" id="13_wuiu7"]
+[ext_resource type="Resource" uid="uid://dkspjmmlf8trk" path="res://custom_resources/footsteps_ghoul.tres" id="13_ycgso"]
 [ext_resource type="AudioStream" uid="uid://bsequcqj4ejn5" path="res://assets/sounds/footsteps/Concrete Footstep 6 GSSD.wav" id="14_74fce"]
 [ext_resource type="AudioStream" uid="uid://8dthdrrcqxyc" path="res://assets/sounds/footsteps/Concrete Footstep 7 GSSD.wav" id="15_x7v6n"]
 [ext_resource type="AudioStream" uid="uid://rfj00qoryi0f" path="res://assets/sounds/footsteps/Concrete Footstep 8 GSSD.wav" id="16_gtdav"]
@@ -322,7 +322,7 @@ audio_manager = NodePath("../../AudioManager")
 [node name="AudioManager" parent="." instance=ExtResource("2_bjed4")]
 surface_check_ray_cast_2d_distance = 25.0
 sound_effects_main = Array[ExtResource("9_7a2wh")]([SubResource("Resource_a4yqr"), SubResource("Resource_hlaem"), SubResource("Resource_a5dq3")])
-custom_footsteps = ExtResource("13_wuiu7")
+custom_footsteps = ExtResource("13_ycgso")
 concrete_footstep_sounds = SubResource("AudioStreamRandomizer_0dnba")
 footstep_sounds_volume = -16.0
 base_timer_low = 0.25
@@ -357,8 +357,8 @@ autoplay = "idle"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = -13.741
 
-[connection signal="body_entered" from="Marker2D/Sprite2D/Area2D444" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Marker2D/Sprite2D/Area2D444" to="State/EnemyAttacking" method="_on_area_2d_444_body_entered"]
+[connection signal="body_entered" from="Marker2D/Sprite2D/Area2D444" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyWalking" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="Marker2D/AnimationPlayer" to="State/EnemyHit" method="_on_animation_player_animation_finished"]

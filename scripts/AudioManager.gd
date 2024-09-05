@@ -188,11 +188,13 @@ func play_footstep_sound_for_material(material: String = 'default'):
 	add_child(audio_player)
 	audio_player.stream = sound
 	audio_player.bus = footstep_audio_bus
-	audio_player.max_distance = max_distance
+	#audio_player.max_distance = max_distance
+	audio_player.max_distance = custom_footsteps.sounds[footstep_selection_index].sound_max_distance
 	
 	#if footstep_sounds_volume:
 		#audio_player.volume_db = footstep_sounds_volume
-	audio_player.volume_db += custom_footsteps.add_to_volume
+	#audio_player.volume_db += custom_footsteps.add_to_volume
+	audio_player.volume_db += custom_footsteps.sounds[footstep_selection_index].sound_volume
 	
 	# adds alternating pitch offset to footsteps 
 	if should_vary_footstep_pitches:

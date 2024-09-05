@@ -1,0 +1,103 @@
+[gd_resource type="Resource" script_class="CustomAudioResourceArray" load_steps=22 format=3 uid="uid://dkspjmmlf8trk"]
+
+[ext_resource type="Script" path="res://custom_audio_resource_array.gd" id="1_rdx0o"]
+[ext_resource type="Script" path="res://scripts/custom_audio_resource.gd" id="2_ocap7"]
+[ext_resource type="AudioStream" uid="uid://cgowkboqoguy7" path="res://assets/sounds/footsteps/Concrete Footstep 1 GSSD.wav" id="3_l7iaq"]
+[ext_resource type="AudioStream" uid="uid://e8c5a0txvsot" path="res://assets/sounds/footsteps/Concrete Footstep 2 GSSD.wav" id="4_ldndx"]
+[ext_resource type="AudioStream" uid="uid://crwm01qlymiig" path="res://assets/sounds/footsteps/Concrete Footstep 3 GSSD.wav" id="5_0liyb"]
+[ext_resource type="AudioStream" uid="uid://mn2cea4ficwh" path="res://assets/sounds/footsteps/Concrete Footstep 4 GSSD.wav" id="6_5rgvk"]
+[ext_resource type="AudioStream" uid="uid://btvwi431s3iga" path="res://assets/sounds/footsteps/Metal Grate Foostep 1 GSSD.wav" id="7_1ilo6"]
+[ext_resource type="AudioStream" uid="uid://bp7ysse7wt8yx" path="res://assets/sounds/footsteps/Metal Grate Foostep 2 GSSD.wav" id="8_ncaby"]
+[ext_resource type="AudioStream" uid="uid://bmv5uyyr83w0d" path="res://assets/sounds/footsteps/Metal Grate Foostep 3 GSSD.wav" id="9_aei8c"]
+[ext_resource type="AudioStream" uid="uid://cpmevpe0bct7y" path="res://assets/sounds/footsteps/Metal Grate Foostep 4 GSSD.wav" id="10_b7vj6"]
+[ext_resource type="AudioStream" uid="uid://cit58khslordw" path="res://assets/sounds/footsteps/metalfootstep1.mp3" id="11_w6w76"]
+[ext_resource type="AudioStream" uid="uid://4enjaudeyf3r" path="res://assets/sounds/footsteps/metalfootstep2.mp3" id="12_nnx3x"]
+[ext_resource type="AudioStream" uid="uid://bkofdj575bbox" path="res://assets/sounds/footsteps/metalfootstep3.mp3" id="13_yy3ky"]
+[ext_resource type="AudioStream" uid="uid://b0r0ecriqgeyh" path="res://assets/sounds/footsteps/metalfootstep4.mp3" id="14_rond4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gjqvv"]
+playback_mode = 2
+streams_count = 4
+stream_0/stream = ExtResource("3_l7iaq")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_ldndx")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_0liyb")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_5rgvk")
+stream_3/weight = 1.0
+
+[sub_resource type="Resource" id="Resource_w2h4p"]
+script = ExtResource("2_ocap7")
+sound_stream = SubResource("AudioStreamRandomizer_gjqvv")
+sound_name = "concrete"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 2.0
+sound_max_distance = 250
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lipdx"]
+streams_count = 4
+stream_0/stream = ExtResource("7_1ilo6")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("8_ncaby")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("9_aei8c")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("10_b7vj6")
+stream_3/weight = 1.0
+
+[sub_resource type="Resource" id="Resource_rqfls"]
+script = ExtResource("2_ocap7")
+sound_stream = SubResource("AudioStreamRandomizer_lipdx")
+sound_name = "metal_grate"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 600
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
+[sub_resource type="Resource" id="Resource_ufuf3"]
+script = ExtResource("2_ocap7")
+sound_name = "metal"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 600
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7sx4p"]
+streams_count = 4
+stream_0/stream = ExtResource("11_w6w76")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_nnx3x")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_yy3ky")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_rond4")
+stream_3/weight = 1.0
+
+[sub_resource type="Resource" id="Resource_3o14e"]
+script = ExtResource("2_ocap7")
+sound_stream = SubResource("AudioStreamRandomizer_7sx4p")
+sound_name = "metal_car"
+sound_volume = 0
+sound_bus = "master"
+sound_pitch = 1.0
+sound_max_distance = 600
+should_randomize_pitch = false
+randomize_pitch_amount = 0.05
+sound_max_polyphony = 1
+
+[resource]
+script = ExtResource("1_rdx0o")
+sounds = Array[ExtResource("2_ocap7")]([SubResource("Resource_w2h4p"), SubResource("Resource_rqfls"), SubResource("Resource_ufuf3"), SubResource("Resource_3o14e"), null])
+add_to_pitch_scale = 2.0
+add_to_volume = -6.0
