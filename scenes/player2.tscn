@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://cn8xxt57xbc7t"]
+[gd_scene load_steps=77 format=3 uid="uid://cn8xxt57xbc7t"]
 
 [ext_resource type="Script" path="res://scenes/player2.gd" id="1_kdwoi"]
 [ext_resource type="Texture2D" uid="uid://b80o0xpvi36cv" path="res://assets/sprites/Shock Sweeper/shuffe(move).png" id="1_rh8aw"]
@@ -11,23 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://bumbr20aegnhq" path="res://assets/sprites/Shock Sweeper/jump.png" id="3_fr6x3"]
 [ext_resource type="Script" path="res://scripts/custom_audio_resource.gd" id="3_md7ig"]
 [ext_resource type="AudioStream" uid="uid://b25qj1ythq2mv" path="res://assets/sounds/jump GSSD.wav" id="4_bcgde"]
-[ext_resource type="AudioStream" uid="uid://cit58khslordw" path="res://assets/sounds/footsteps/metalfootstep1.mp3" id="5_cc6xw"]
-[ext_resource type="AudioStream" uid="uid://4enjaudeyf3r" path="res://assets/sounds/footsteps/metalfootstep2.mp3" id="6_fk1e8"]
 [ext_resource type="Texture2D" uid="uid://c4w5te0qnk10a" path="res://assets/sprites/Shock Sweeper/wake.png" id="6_v0ul8"]
-[ext_resource type="AudioStream" uid="uid://bkofdj575bbox" path="res://assets/sounds/footsteps/metalfootstep3.mp3" id="7_jhx4w"]
-[ext_resource type="AudioStream" uid="uid://b0r0ecriqgeyh" path="res://assets/sounds/footsteps/metalfootstep4.mp3" id="8_kuxfc"]
-[ext_resource type="AudioStream" uid="uid://cgowkboqoguy7" path="res://assets/sounds/footsteps/Concrete Footstep 1 GSSD.wav" id="9_y6sc3"]
-[ext_resource type="AudioStream" uid="uid://e8c5a0txvsot" path="res://assets/sounds/footsteps/Concrete Footstep 2 GSSD.wav" id="10_clfbj"]
 [ext_resource type="AudioStream" uid="uid://dalrohhwvrw7o" path="res://assets/sounds/jump.wav" id="10_q2606"]
 [ext_resource type="AudioStream" uid="uid://bruu4kec3yynp" path="res://assets/sounds/tap.wav" id="11_0r47l"]
-[ext_resource type="AudioStream" uid="uid://crwm01qlymiig" path="res://assets/sounds/footsteps/Concrete Footstep 3 GSSD.wav" id="11_pr3sa"]
-[ext_resource type="AudioStream" uid="uid://mn2cea4ficwh" path="res://assets/sounds/footsteps/Concrete Footstep 4 GSSD.wav" id="12_a7tgb"]
 [ext_resource type="AudioStream" uid="uid://s63yggkpj3jm" path="res://assets/sounds/hurt.wav" id="12_qjcbt"]
 [ext_resource type="AudioStream" uid="uid://blxdridx148pl" path="res://assets/sounds/Electric Swing 1 GSSD.wav" id="13_e0vfq"]
-[ext_resource type="AudioStream" uid="uid://dmhfqqqdp2ecn" path="res://assets/sounds/footsteps/Concrete Footstep 5 GSSD.wav" id="13_trxj6"]
-[ext_resource type="AudioStream" uid="uid://bsequcqj4ejn5" path="res://assets/sounds/footsteps/Concrete Footstep 6 GSSD.wav" id="14_ldppb"]
-[ext_resource type="AudioStream" uid="uid://8dthdrrcqxyc" path="res://assets/sounds/footsteps/Concrete Footstep 7 GSSD.wav" id="15_ibkc4"]
-[ext_resource type="AudioStream" uid="uid://rfj00qoryi0f" path="res://assets/sounds/footsteps/Concrete Footstep 8 GSSD.wav" id="16_igiyc"]
 [ext_resource type="AudioStream" uid="uid://btvwi431s3iga" path="res://assets/sounds/footsteps/Metal Grate Foostep 1 GSSD.wav" id="17_ylra5"]
 [ext_resource type="AudioStream" uid="uid://bp7ysse7wt8yx" path="res://assets/sounds/footsteps/Metal Grate Foostep 2 GSSD.wav" id="18_mxyx4"]
 [ext_resource type="Resource" uid="uid://b3tmwnsk31byj" path="res://custom_resources/footsteps.tres" id="18_y5tp1"]
@@ -902,61 +890,6 @@ should_randomize_pitch = true
 randomize_pitch_amount = 0.05
 sound_max_polyphony = 1
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1btnj"]
-playback_mode = 2
-streams_count = 4
-stream_0/stream = ExtResource("5_cc6xw")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("6_fk1e8")
-stream_1/weight = 1.0
-stream_2/stream = ExtResource("7_jhx4w")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("8_kuxfc")
-stream_3/weight = 1.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s5yav"]
-playback_mode = 2
-streams_count = 4
-stream_0/stream = ExtResource("17_ylra5")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("18_mxyx4")
-stream_1/weight = 1.0
-stream_2/stream = ExtResource("19_0tkrv")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("20_hqukg")
-stream_3/weight = 1.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rd5mr"]
-streams_count = 4
-stream_0/stream = ExtResource("5_cc6xw")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("6_fk1e8")
-stream_1/weight = 1.0
-stream_2/stream = ExtResource("7_jhx4w")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("8_kuxfc")
-stream_3/weight = 1.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_afiym"]
-playback_mode = 2
-streams_count = 8
-stream_0/stream = ExtResource("9_y6sc3")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("10_clfbj")
-stream_1/weight = 1.0
-stream_2/stream = ExtResource("11_pr3sa")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("12_a7tgb")
-stream_3/weight = 1.0
-stream_4/stream = ExtResource("13_trxj6")
-stream_4/weight = 1.0
-stream_5/stream = ExtResource("14_ldppb")
-stream_5/weight = 1.0
-stream_6/stream = ExtResource("15_ibkc4")
-stream_6/weight = 1.0
-stream_7/stream = ExtResource("16_igiyc")
-stream_7/weight = 1.0
-
 [node name="Player2" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 position = Vector2(10, 0)
@@ -1019,10 +952,6 @@ surface_check_ray_cast_2d_distance = 20.0
 sound_effects_main = Array[ExtResource("3_md7ig")]([SubResource("Resource_euv3j"), SubResource("Resource_xhome")])
 footsteps_all = Array[ExtResource("3_md7ig")]([SubResource("Resource_yeggp")])
 custom_footsteps = ExtResource("18_y5tp1")
-metal_footstep_sounds = SubResource("AudioStreamRandomizer_1btnj")
-metal_grate_footstep_sounds = SubResource("AudioStreamRandomizer_s5yav")
-metal_car_footstep_sounds = SubResource("AudioStreamRandomizer_rd5mr")
-concrete_footstep_sounds = SubResource("AudioStreamRandomizer_afiym")
 footstep_sounds_volume = -6.0
 
 [node name="JumpSFX" type="AudioStreamPlayer2D" parent="."]

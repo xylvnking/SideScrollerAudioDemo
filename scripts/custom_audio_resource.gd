@@ -1,8 +1,6 @@
 extends Resource
 class_name CustomAudioResource
 
-# https://youtu.be/vzRZjM9MTGw
-
 @export var sound_stream: AudioStream
 @export var sound_name: String
 @export var sound_volume: int = 0
@@ -12,3 +10,10 @@ class_name CustomAudioResource
 @export var should_randomize_pitch: bool = false
 @export var randomize_pitch_amount: float = 0.05
 @export var sound_max_polyphony: int = 1
+
+
+
+
+
+
+# https://youtu.be/vzRZjM9MTGw

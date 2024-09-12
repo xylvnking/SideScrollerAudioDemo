@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cc76f8inpb8b4"]
+[gd_scene load_steps=28 format=3 uid="uid://cc76f8inpb8b4"]
 
 [ext_resource type="Script" path="res://scripts/GhoulV2.gd" id="1_dtx0y"]
 [ext_resource type="Texture2D" uid="uid://c4jwhtgvvcni0" path="res://assets/DARK - Character Pack 3 (2)/Ghoul/Ghoul Sprite Sheet 62 x 33.png" id="1_kodfr"]
@@ -10,18 +10,10 @@
 [ext_resource type="Script" path="res://scripts/states/EnemyAttacking.gd" id="5_rufsj"]
 [ext_resource type="Script" path="res://scripts/states/EnemyDeath.gd" id="7_n6oc3"]
 [ext_resource type="Script" path="res://scripts/custom_audio_resource.gd" id="9_7a2wh"]
-[ext_resource type="AudioStream" uid="uid://cgowkboqoguy7" path="res://assets/sounds/footsteps/Concrete Footstep 1 GSSD.wav" id="9_ceuwm"]
 [ext_resource type="AudioStream" uid="uid://c2mbghjikkx55" path="res://assets/sounds/ghoul sounds/Ghoul Attack 1 GSSD.wav" id="10_ke6ap"]
-[ext_resource type="AudioStream" uid="uid://e8c5a0txvsot" path="res://assets/sounds/footsteps/Concrete Footstep 2 GSSD.wav" id="10_o1lc3"]
 [ext_resource type="AudioStream" uid="uid://15vdwwgxyo0x" path="res://assets/sounds/ghoul sounds/Ghoul Death 1 GSSD.wav" id="11_1i5ax"]
-[ext_resource type="AudioStream" uid="uid://crwm01qlymiig" path="res://assets/sounds/footsteps/Concrete Footstep 3 GSSD.wav" id="11_qa6jt"]
-[ext_resource type="AudioStream" uid="uid://mn2cea4ficwh" path="res://assets/sounds/footsteps/Concrete Footstep 4 GSSD.wav" id="12_rbbno"]
-[ext_resource type="AudioStream" uid="uid://dmhfqqqdp2ecn" path="res://assets/sounds/footsteps/Concrete Footstep 5 GSSD.wav" id="13_af15w"]
 [ext_resource type="AudioStream" uid="uid://oqcjlldkjbpg" path="res://assets/sounds/ghoul sounds/Ghoul Damaged GSSD.wav" id="13_bnbxm"]
 [ext_resource type="Resource" uid="uid://dkspjmmlf8trk" path="res://custom_resources/footsteps_ghoul.tres" id="13_ycgso"]
-[ext_resource type="AudioStream" uid="uid://bsequcqj4ejn5" path="res://assets/sounds/footsteps/Concrete Footstep 6 GSSD.wav" id="14_74fce"]
-[ext_resource type="AudioStream" uid="uid://8dthdrrcqxyc" path="res://assets/sounds/footsteps/Concrete Footstep 7 GSSD.wav" id="15_x7v6n"]
-[ext_resource type="AudioStream" uid="uid://rfj00qoryi0f" path="res://assets/sounds/footsteps/Concrete Footstep 8 GSSD.wav" id="16_gtdav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_melvh"]
 size = Vector2(12, 23.5)
@@ -61,26 +53,6 @@ sound_max_distance = 2000
 should_randomize_pitch = false
 randomize_pitch_amount = 0.05
 sound_max_polyphony = 1
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0dnba"]
-playback_mode = 2
-streams_count = 8
-stream_0/stream = ExtResource("9_ceuwm")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("10_o1lc3")
-stream_1/weight = 1.0
-stream_2/stream = ExtResource("11_qa6jt")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("12_rbbno")
-stream_3/weight = 1.0
-stream_4/stream = ExtResource("13_af15w")
-stream_4/weight = 1.0
-stream_5/stream = ExtResource("14_74fce")
-stream_5/weight = 1.0
-stream_6/stream = ExtResource("15_x7v6n")
-stream_6/weight = 1.0
-stream_7/stream = ExtResource("16_gtdav")
-stream_7/weight = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rchpx"]
 radius = 13.0
@@ -137,7 +109,7 @@ tracks/1/path = NodePath("Sprite2D/Area2D444/AttackHitbox:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.3, 0.35, 0.4),
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.35, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, true, true]
@@ -323,7 +295,6 @@ audio_manager = NodePath("../../AudioManager")
 surface_check_ray_cast_2d_distance = 25.0
 sound_effects_main = Array[ExtResource("9_7a2wh")]([SubResource("Resource_a4yqr"), SubResource("Resource_hlaem"), SubResource("Resource_a5dq3")])
 custom_footsteps = ExtResource("13_ycgso")
-concrete_footstep_sounds = SubResource("AudioStreamRandomizer_0dnba")
 footstep_sounds_volume = -16.0
 base_timer_low = 0.25
 base_timer_high = 2.0
@@ -357,8 +328,8 @@ autoplay = "idle"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = -13.741
 
-[connection signal="body_entered" from="Marker2D/Sprite2D/Area2D444" to="State/EnemyAttacking" method="_on_area_2d_444_body_entered"]
 [connection signal="body_entered" from="Marker2D/Sprite2D/Area2D444" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Marker2D/Sprite2D/Area2D444" to="State/EnemyAttacking" method="_on_area_2d_444_body_entered"]
 [connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyWalking" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Marker2D/Area2D" to="State/EnemyAttacking" method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="Marker2D/AnimationPlayer" to="State/EnemyHit" method="_on_animation_player_animation_finished"]

@@ -5,7 +5,14 @@ const JUMP_VELOCITY = -400.0
 var health = 100
 var state_machine
 
+
+
+# hello world
 @onready var audio_manager = $AudioManager
+
+
+
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

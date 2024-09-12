@@ -12,12 +12,13 @@ func _ready():
 func _process(delta):
 	pass
 
+
+# Health pack being removed once the sound of eating it is finished
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("player"):  # Ensure the player is in the "Player" group
+	if body.is_in_group("player"):
 		sprite_2d.visible = false
 		collision_shape_2d.set_deferred("disabled",true)
 		body.heal()
-		#audio_manager.play_sound_custom("consumed")
 		var audio_player = audio_manager.play_sound_custom("consumed")
 		audio_player.finished.connect(func() -> void:
 			queue_free()
